@@ -115,6 +115,20 @@ public class ListNodeStudy {
         return tmp.next;
     }
 
+    //删除目标节点
+    public ListNode delNode2(ListNode head, ListNode target) {
+        //被删节点是最后一个节点的情况
+        if (target==null||target.next==null){
+            delNode(head,1);
+        }else {
+            //相当于将后元素向前移动（当前元素被覆盖掉了）
+            target.val = target.next.val;
+            target.next = target.next.next;
+        }
+
+        return head;
+    }
+
     //合并两个有序链表
     public ListNode merge(ListNode l1, ListNode l2) {
         ListNode head = null, tail = new ListNode();
@@ -352,34 +366,11 @@ public class ListNodeStudy {
 
     @Test
     public void test() {
-        ListNode l1 = Arr2Node(new int[]{1, 2, 3, 4});
-        ListNode l2 = Arr2Node(new int[]{3, 4, 5, 6});
-        printListNode(l1);
-        printListNode(l2);
+        ListNode l1 = new ListNode(new int[]{1, 2, 3, 4});
+        ListNode l2 = l1.next.next.next;
+        l2.print();
+        delNode2(l1, l2).print();
     }
 
-
-    public ListNode Arr2Node(int []arr){
-        ListNode head=null;
-        ListNode tail=null;
-        for (int val : arr) {
-            if (head == null) {
-                head = tail = new ListNode(val);
-            } else {
-                tail.next = new ListNode(val);
-                tail = tail.next;
-            }
-        }
-        return head;
-    }
-
-    public void printListNode(ListNode root){
-        ListNode cur=root;
-        while (cur!=null){
-            System.out.print(cur.val+" ");
-            cur=cur.next;
-        }
-        System.out.println("");
-    }
 
 }
