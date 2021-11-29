@@ -1,0 +1,5 @@
+tar -czvf  目标文件.tar.gz  源文件 	//源文件进行压缩；
+
+tar -xzvf 源文件.tar.gz		//将源文件解压到当前目录下
+
+find / -name "*.conf"	//找到根目录下，以.conf结尾的文件

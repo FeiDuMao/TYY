@@ -1,0 +1,70 @@
+//2.两数相加
+public ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
+        ListNode head = null, tail = null;
+        int carry = 0;
+        while (l1 != null || l2 != null) {
+            int n1 = l1 != null ? l1.val : 0;
+            int n2 = l2 != null ? l2.val : 0;
+            int sum = n1 + n2 + carry;
+            if (head == null) {
+                head = tail = new ListNode(sum % 10);
+            } else {
+                tail.next = new ListNode(sum % 10);
+                tail = tail.next;
+            }
+            carry = sum / 10;
+            if (l1 != null) {
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                l2 = l2.next;
+            }
+        }
+        if (carry > 0) {
+            tail.next = new ListNode(carry);
+        }
+        return head;
+    }
+
+
+//反转链表，双指针思想
+    public ListNode ReverseList(ListNode head) {
+
+        if (head==null)
+            return null;
+
+        ListNode pre=null;
+        ListNode cur=head;
+
+        while (cur!=null){
+            ListNode tmp=cur.next;
+            cur.next=pre;
+            pre=cur;
+            cur=tmp;
+        }
+        return pre;
+
+    }
+
+//快排
+public static void QuickSort(int[] array,int low,int hight){
+        //if (array.length < 1 || low < 0 || hight >= array.length || low > hight) return null;
+        if(low < hight){
+            int privotpos = partition(array,low,hight);
+            QuickSort(array,low,privotpos - 1);
+            QuickSort(array,privotpos + 1,hight);
+        }
+
+    }
+
+    public static int partition(int[] array,int low,int hight) {
+        int privot = array[low];
+        while (low < hight) {
+            while (low < hight && array[hight] >= privot) --hight;
+            array[low] = array[hight];
+            while (low < hight && array[low] <= privot) ++low;
+            array[hight] = array[low];
+        }
+        array[low] = privot;
+        return low;
+    }
