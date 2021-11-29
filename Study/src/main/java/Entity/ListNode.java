@@ -1,4 +1,4 @@
-package study;
+package Entity;
 
 
 import lombok.AllArgsConstructor;
@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ListNode {
-      int val;
-      public ListNode next;
 
+      public int val;
+      public ListNode next;
       public ListNode(int val){
             this.val=val;
       }
