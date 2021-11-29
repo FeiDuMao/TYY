@@ -9,12 +9,10 @@ import java.util.Stack;
 
 public class ListNodeStudy {
 
-
     //反转链表，双指针思想
     public ListNode ReverseList(ListNode head) {
 
-        if (head == null)
-            return null;
+        if (head == null) return null;
 
         ListNode pre = null;
         ListNode cur = head;
@@ -26,7 +24,6 @@ public class ListNodeStudy {
             cur = tmp;
         }
         return pre;
-
     }
 
     //两数之和
@@ -281,68 +278,68 @@ public class ListNodeStudy {
     }
 
     //Y形相交链表的第一个节点    *A和B如果没有公共节点则会死循环
-    public ListNode isRep(ListNode head1,ListNode head2){
-        ListNode A=head1,B=head2;
-        while (A!=B){
-            A= A==null? head2:A.next;
-            B= B==null? head1:B.next;
+    public ListNode isRep(ListNode head1, ListNode head2) {
+        ListNode A = head1, B = head2;
+        while (A != B) {
+            A = A == null ? head2 : A.next;
+            B = B == null ? head1 : B.next;
         }
         return A;
     }
 
     //两两交换节点
     public ListNode swapPairs(ListNode head) {
-        ListNode ans=new ListNode(0,head);
-        ListNode tmp=ans;
-        while (tmp.next!=null&&tmp.next.next!=null){
-            ListNode left=tmp.next;
-            ListNode right=tmp.next.next;
+        ListNode ans = new ListNode(0, head);
+        ListNode tmp = ans;
+        while (tmp.next != null && tmp.next.next != null) {
+            ListNode left = tmp.next;
+            ListNode right = tmp.next.next;
 
-            tmp.next=right;
-            left.next=right.next;
-            right.next=left;
+            tmp.next = right;
+            left.next = right.next;
+            right.next = left;
 
-            tmp=left;
+            tmp = left;
         }
         return ans.next;
     }
 
     //链表重排
     public void reorderList(ListNode head) {
-        ListNode cur=head;
-        while (cur.next!=null&&cur.next.next!=null){
-            ListNode tmp=cur.next;
+        ListNode cur = head;
+        while (cur.next != null && cur.next.next != null) {
+            ListNode tmp = cur.next;
             //if (tmp.next==null)return;
-            ListNode tail=tmp;
-            while (tail.next.next!=null){
-                tail=tail.next;
+            ListNode tail = tmp;
+            while (tail.next.next != null) {
+                tail = tail.next;
             }
-            ListNode node=tail.next;
-            tail.next=null;
+            ListNode node = tail.next;
+            tail.next = null;
 
-            node.next=tmp;
-            cur.next=node;
-            cur=tmp;
+            node.next = tmp;
+            cur.next = node;
+            cur = tmp;
         }
     }
 
-    public ListNode solve(ListNode[] a){
-        ListNode ans=new ListNode(-1);
-        ListNode cur=ans;
-        int out=a.length;
-        if (out==0)return null;
-        if (out==1)return a[0];
-        Set<Integer>set=new HashSet<>();
-        while (out>0){
+    public ListNode solve(ListNode[] a) {
+        ListNode ans = new ListNode(-1);
+        ListNode cur = ans;
+        int out = a.length;
+        if (out == 0) return null;
+        if (out == 1) return a[0];
+        Set<Integer> set = new HashSet<>();
+        while (out > 0) {
             for (int i = 0; i < a.length; i++) {
-                if (a[i]!=null){
-                    ListNode tmp=a[i].next;
-                    a[i].next=null;
-                    cur.next=a[i];
-                    cur=cur.next;
-                    a[i]=tmp;
-                }else {
-                    if (!set.contains(i)){
+                if (a[i] != null) {
+                    ListNode tmp = a[i].next;
+                    a[i].next = null;
+                    cur.next = a[i];
+                    cur = cur.next;
+                    a[i] = tmp;
+                } else {
+                    if (!set.contains(i)) {
                         out--;
                         set.add(i);
                     }
@@ -355,50 +352,34 @@ public class ListNodeStudy {
 
     @Test
     public void test() {
-        ListNode l1 = new ListNode(4);
-        ListNode l2 = new ListNode(5);
-        ListNode l3 = new ListNode(6);
-        l1.setNext(l2);
-        l2.setNext(l3);
-        l3.setNext(null);
-
-        ListNode n1 = new ListNode(7);
-        ListNode n2 = new ListNode(8);
-        ListNode n3 = new ListNode(9);
-        n1.setNext(n2);
-        n2.setNext(n3);
-        n3.setNext(null);
-
-
-        ListNode m1 = new ListNode(1);
-        ListNode m2 = new ListNode(2);
-        ListNode m3 = new ListNode(3);
-        m1.setNext(m2);
-        m2.setNext(m3);
-        m3.setNext(null);
-
-        l3.next=n1;
-
-        System.out.println(isCycle(l1));
-
-//        ListNode l=l1;
-//        while (l != null) {
-//            System.out.print(l.val);
-//            l = l.next;
-//        }
-
-
+        ListNode l1 = Arr2Node(new int[]{1, 2, 3, 4});
+        ListNode l2 = Arr2Node(new int[]{3, 4, 5, 6});
+        printListNode(l1);
+        printListNode(l2);
     }
 
 
-    public boolean isCycle(ListNode head){
-        ListNode slow=head,fast=head;
-        while (fast.next.next!=null){
-            slow=slow.next;
-            fast=fast.next.next;
-            if (slow==fast)return true;
+    public ListNode Arr2Node(int []arr){
+        ListNode head=null;
+        ListNode tail=null;
+        for (int val : arr) {
+            if (head == null) {
+                head = tail = new ListNode(val);
+            } else {
+                tail.next = new ListNode(val);
+                tail = tail.next;
+            }
         }
-        return false;
+        return head;
+    }
+
+    public void printListNode(ListNode root){
+        ListNode cur=root;
+        while (cur!=null){
+            System.out.print(cur.val+" ");
+            cur=cur.next;
+        }
+        System.out.println("");
     }
 
 }
