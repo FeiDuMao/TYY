@@ -3,6 +3,11 @@ package leetcode;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * LRU算法：淘汰最少使用
+ * 采用hashmap<key,node>当作缓存，读取都在缓存中进行
+ * 底层采用双向链表，每个节点底层采用<key,value>来存储数据
+ */
 public class LRU {
 
     //采用双向链表来存储数据

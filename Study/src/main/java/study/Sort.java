@@ -4,18 +4,92 @@ package study;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Queue;
 
+/**
+ * 稳定：排序后，相等的元素的相对位置没有变则稳定
+ * 时间复杂度：
+ * 空间复杂度：
+ */
 public class Sort {
+
+    //交换数组中的两个元素
+    public void exchange(int[] arr, int from, int to) {
+        int tmp = arr[to];
+        arr[to] = arr[from];
+        arr[from] = tmp;
+    }
 
 
     /**
-     * 快速排序，时间复杂度：n*log(n) 不稳定
-     * 最好情况：每次分解时选取的元素为中间值
-     * 最坏情况：每次分解时选取的元素为最大值或最小值
+     * 冒泡排序：平均时间复杂度：n^2  稳定
+     * 最好情况：n
+     * 最坏情况：n^2
+     */
+    public void BubbleSort(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    exchange(arr, j, j + 1);
+                }
+            }
+        }
+    }
+
+
+    /**
+     * 插入排序：平均时间复杂度：n^2 稳定
+     * 最好情况：n
+     * 最坏情况：n^2
+     * 适用于总体有序的情况
+     */
+    public int[] InsertSort(int[] arr) {
+        //抽牌
+        for (int i = 1; i < arr.length; i++) {
+            //插入
+            for (int j = i; j > 0; j--) {
+                if (arr[j] <= arr[j - 1]) {
+                    //交换
+                    exchange(arr, j, j - 1);
+                }
+            }
+        }
+        return arr;
+    }
+
+
+    /**
+     *选择排序：平均时间复杂度：n^2 不稳定
+     * 最好情况：n^2
+     * 最坏情况：n^2
+     * 每次找到一个元素的正确位置（比较暴力）
+     */
+    public void SelectionSort(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            int tmp = i;
+            //一轮循环后得到当前最小元素的下标
+            for (int j = i+1; j <arr.length ; j++) {
+                if (arr[j]<arr[tmp]){
+                    tmp=j;
+                }
+            }
+            exchange(arr,i,tmp);
+
+        }
+    }
+
+
+    /**
+     * 快速排序，平均时间复杂度：n*log(n) 不稳定
+     * 空间复杂度：log(n)
+     * 最好情况：n*log(n):每次分解时选取的元素为中间值
+     * 最坏情况：n^2:每次分解时选取的元素为最大值或最小值
+     * 每次递归找到一个元素的正确位置
      */
     public void QuickSort(int[] arr, int low, int high) {
         if (low >= high) return;
         int i = low, j = high;
+        //选取标针
         int tmp = arr[low];
         while (i < j) {
             while (arr[j] >= tmp && i < j) j--;
@@ -23,30 +97,18 @@ public class Sort {
             while (arr[i] <= tmp && i < j) i++;
             arr[j] = arr[i];
         }
+
         arr[i] = tmp;
-        sort(arr, low, i - 1);
-        sort(arr, i + 1, high);
+        QuickSort(arr, low, i - 1);
+        QuickSort(arr, i + 1, high);
     }
 
 
-    //插入排序
-    public int[] InsertSort(int[] array) {
-        //抽牌
-        for (int i = 1; i < array.length; i++) {
-            //插入
-            for (int j = i; j > 0; j--) {
-                if (array[j] <= array[j - 1]) {
-                    //交换
-                    int tmp = array[j];
-                    array[j] = array[j - 1];
-                    array[j - 1] = tmp;
-                }
-            }
-        }
-        return array;
-    }
-
-    //归并排序，时间复杂度：n*log(n) 稳定
+    /**
+     * 归并排序，时间复杂度: nlog(n) 稳定
+     * 空间复杂度：n：每轮merge后空间会回收
+     * 最好情况与最坏情况一样
+     */
     public int[] MergeSort(int[] array) {
         if (array.length < 2) {
             return array;
@@ -80,6 +142,7 @@ public class Sort {
 
         int i = 0, j = 0, k = 0;
         while (i < left.length && j < right.length) {
+            //因为left[i] <= right[j]，相对位置没有改变，所以是稳定排序
             result[k++] = left[i] <= right[j] ?
                     left[i++] : right[j++];
         }
@@ -111,50 +174,12 @@ public class Sort {
 
         System.out.println("排序前：" + Arrays.toString(a));
 
-        //Arrays.sort(a);
-        //QuickSort(a,0,a.length-1);
-        //t1(a,0,a.length-1);
+        SelectionSort(a);
 
-
-
-        sort2(a, 0, a.length - 1);
         System.out.println("排序后：" + Arrays.toString(a));
 
 
     }
-
-    public void sort(int[] arr, int low, int high) {
-        if (low >= high) return;
-        int i = low, j = high;
-        int tmp = arr[low];
-        while (i < j) {
-            while (arr[j] >= tmp && i < j) j--;
-            arr[i] = arr[j];
-            while (arr[i] <= tmp && i < j) i++;
-            arr[j] = arr[i];
-        }
-        arr[i] = tmp;
-        sort(arr, low, i - 1);
-        sort(arr, i + 1, high);
-    }
-
-
-    public void sort2(int arr[],int low,int high){
-        if (low>=high)return;
-        int i=low,j=high,tmp=arr[low];
-        while (i<j){
-            while (i<j&&arr[j]>=tmp)j--;
-            arr[i]=arr[j];
-            while (i<j&&arr[i]<=tmp)i++;
-            arr[j]=arr[i];
-        }
-        arr[i]=tmp;
-
-        sort2(arr,low,i-1);
-        sort2(arr,i+1,high);
-    }
-
-
 
 
 }
