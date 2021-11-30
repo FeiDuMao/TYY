@@ -1,4 +1,5 @@
 
+import Entity.ListNode;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -57,6 +58,7 @@ public class test {
 
 
 
+
         stream.filter(str->str.startsWith("t")).forEach(System.out::println);
 
 
@@ -82,7 +84,7 @@ public class test {
 
     @Test
     public void test3(){
-        System.out.println(date.getFromName("year"));
+        System.out.println(8>>5);
     }
 
 
