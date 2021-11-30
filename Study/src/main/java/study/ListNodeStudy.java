@@ -118,9 +118,9 @@ public class ListNodeStudy {
     //删除目标节点
     public ListNode delNode2(ListNode head, ListNode target) {
         //被删节点是最后一个节点的情况
-        if (target==null||target.next==null){
-            delNode(head,1);
-        }else {
+        if (target == null || target.next == null) {
+            delNode(head, 1);
+        } else {
             //相当于将后元素向前移动（当前元素被覆盖掉了）
             target.val = target.next.val;
             target.next = target.next.next;
@@ -366,10 +366,9 @@ public class ListNodeStudy {
 
     @Test
     public void test() {
-        ListNode l1 = new ListNode(new int[]{1, 2, 3, 4});
-        ListNode l2 = l1.next.next.next;
-        l2.print();
-        delNode2(l1, l2).print();
+        ListNode l1 = new ListNode(new int[]{1, 2, 3, 4,4,4,5});
+        delRepeat1(l1);
+        l1.print();
     }
 
 

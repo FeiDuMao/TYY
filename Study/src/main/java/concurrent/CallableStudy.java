@@ -1,5 +1,7 @@
 package concurrent;
 
+import org.junit.Test;
+
 import java.util.concurrent.*;
 
 public class CallableStudy {
@@ -8,7 +10,7 @@ public class CallableStudy {
      * @throws ExecutionException
      * @throws InterruptedException
      */
-    @org.junit.Test
+    @Test
     public void test() throws ExecutionException, InterruptedException {
         //通过线程池
         ThreadPoolExecutor executor=

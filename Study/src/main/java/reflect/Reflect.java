@@ -28,7 +28,7 @@ public class Reflect {
             System.out.println(declaredMethod);
         }
 
-        TreeNode node = (TreeNode)clazz.newInstance();
+        TreeNode node = (TreeNode) clazz.newInstance();
         System.out.println(clazz.getCanonicalName());
 
         Method setVal = clazz.getDeclaredMethod("setVal", int.class);
