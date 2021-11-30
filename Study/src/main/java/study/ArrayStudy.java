@@ -87,16 +87,17 @@ public class ArrayStudy {
         return get;
     }
 
-    //返回斐波那契数列第n的值
-    public int feibo(int n) {
-        if (n == 0) return 0;
-        if (n == 1) return 1;
-        int a = 0, b = 1;
-        for (int i = 0; i < n - 1; i++) {
-            b = a + b;
-            a = b - a;
+    //返回斐波那契数列第n的值：非递归
+    public int Feibo(int n) {
+        if (n == 1) return 0;
+        if (n == 2) return 1;
+        int pre = 0, cur = 1, tmp;
+        for (int i = 2; i < n; i++) {
+            tmp = pre + cur;
+            pre = cur;
+            cur = tmp;
         }
-        return b;
+        return cur;
     }
 
     //二分查找
@@ -130,49 +131,6 @@ public class ArrayStudy {
         }
         return ans;
 
-    }
-
-    //快速排序
-    public void sort1(int[] arr, int low, int high) {
-        if (low < high) {
-            int p = partition(arr, low, high);
-            sort1(arr, low, p - 1);
-            sort1(arr, p + 1, high);
-        }
-    }
-
-    private int partition(int[] arr, int low, int high) {
-        int p = arr[low];
-        while (low < high) {
-            while (arr[high] > p && low < high) high--;
-            arr[low] = arr[high];
-            while (arr[low] < p && low < high) low++;
-            arr[high] = arr[low];
-        }
-        arr[high] = p;
-        return low;
-
-    }
-
-    //归并排序
-    public int[] sort2(int[] arr) {
-        if (arr.length < 2) return arr;
-        int[] left = Arrays.copyOfRange(arr, 0, arr.length / 2);
-        int[] right = Arrays.copyOfRange(arr, arr.length / 2, arr.length);
-
-        return merge(sort2(left), sort2(right));
-    }
-
-    public int[] merge(int[] a, int[] b) {
-        int i = 0, j = 0, k = 0;
-        int[] ans = new int[a.length + b.length];
-        while (i < a.length && j < b.length) {
-            ans[k++] = a[i] < b[j] ? a[i++] : b[j++];
-        }
-        while (i < a.length) ans[k++] = a[i++];
-        while (j < b.length) ans[k++] = b[j++];
-
-        return ans;
     }
 
     //寻找一个数组的中位数
@@ -363,7 +321,8 @@ public class ArrayStudy {
 
     @Test
     public void test() {
-        merge2(new int[][]{{0, 1}, {1, 3}, {4, 5}});
+        //0 1 1 2 3 5 8 13 21
+        System.out.println(Feibo(9));
     }
 
 

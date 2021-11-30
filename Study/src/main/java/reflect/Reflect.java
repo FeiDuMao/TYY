@@ -13,7 +13,7 @@ public class Reflect {
 
     public static void main(String[] args) throws Exception {
         Class clazz=Class.forName("Entity.TreeNode");
-
+        Class clazz2=ClassLoader.getSystemClassLoader().loadClass(TreeNode.class.getName());
         //获取所有属性
         Field[] declaredFields = clazz.getDeclaredFields();
         for (Field declaredField : declaredFields) {
