@@ -15,34 +15,33 @@ import java.util.stream.Stream;
  * 表达式的参数类型与调用者的类型相同
  * 当参数只有一个时，可以省略（）
  * 当函数体只有一句时，可以同时省略 {}和return
- *
+ * <p>
  * 四大基础函数式接口：
- *          消费型接口：consumer<T>：  void accept(T t)   接收T类型，执行操作，没有返回值
- *          供给型接口：supplier<T>：  T get()            没有参数，执行操作，返回T类型
- *          函数型接口：function<T,R>：R apply(T t)       接收T类型，执行操作，返回R类型
- *          断定型接口：predicate<T>： boolean test(T t)  接收T类型，执行操作，返回boolean类型
- *
+ * 消费型接口：consumer<T>：  void accept(T t)   接收T类型，执行操作，没有返回值
+ * 供给型接口：supplier<T>：  T get()            没有参数，执行操作，返回T类型
+ * 函数型接口：function<T,R>：R apply(T t)       接收T类型，执行操作，返回R类型
+ * 断定型接口：predicate<T>： boolean test(T t)  接收T类型，执行操作，返回boolean类型
  */
 public class LambdaStudy {
 
     @Test
-    public void consumer(){
+    public void consumer() {
 
 
-        Map<Integer,String>map= Maps.newHashMap();
+        Map<Integer, String> map = Maps.newHashMap();
         /**
          * forEach是一种消费型接口，接受参数，进行操作
          */
-        map.forEach((k,v)-> {
+        map.forEach((k, v) -> {
             //do something
-            System.out.println(k+": "+v);
+            System.out.println(k + ": " + v);
         });
 
     }
 
     @Test
-    public void predicateAndSupplier(){
-        List<String> strings = Lists.newArrayList("a","b","c");
+    public void predicateAndSupplier() {
+        List<String> strings = Lists.newArrayList("a", "b", "c");
 
 
         /**
@@ -56,8 +55,8 @@ public class LambdaStudy {
     }
 
     @Test
-    public void methodReference(){
-        List<String> strings = Lists.newArrayList("a","b","c");
+    public void methodReference() {
+        List<String> strings = Lists.newArrayList("a", "b", "c");
         /**
          * 方法引用：当要传递给lambda体进行操作时，已经有实现方法了，可以使用方法引用 eg：System.out::print
          * 注意：方法的参数要与表达式的参数类型相同！！
@@ -68,23 +67,26 @@ public class LambdaStudy {
         //strings.forEach(s->System.out.println(s));
         strings.forEach(System.out::println);
 
-        List<Person>list=Lists.newArrayList(new Person("tyy",10),new Person("aa",12));
+        List<Person> list = Lists.newArrayList(new Person("tyy", 10), new Person("aa", 12));
         list.forEach(var_name -> {
             System.out.println(var_name.getName());
             System.out.println(var_name.getAge());
         });
 
         //对象::非静态方法
-        Person person=new Person();
+        Person person = new Person();
         list.forEach(person::print);
-
+        //List to Map
+        Map<String, Integer> maps = list.stream()
+                .collect(Collectors.toMap(Person::getName, Person::getAge));
+        maps.forEach((k, v) -> System.out.println(k + ": " + v));
 
         /**
          * Function<Double,Long>func=d->Math.round(d);
          * Math.round的参数类型和返回类型和fun1相同
          * 所以可以简写成下列式子
          */
-        Function<Double,Long>func=Math::round;
+        Function<Double, Long> func = Math::round;
         System.out.println(func.apply(10.2));
 
 
@@ -93,9 +95,9 @@ public class LambdaStudy {
          * Supplier<Person>fun=()->new Person();
          * Supplier<Person>fun2=Person::new;
          */
-        Map<String,Integer>map=Maps.newHashMap();
-        map.put("tyy",18);
-        List<Map<String,Integer>>list2=Lists.newArrayList(map);
+        Map<String, Integer> map = Maps.newHashMap();
+        map.put("tyy", 18);
+        List<Map<String, Integer>> list2 = Lists.newArrayList(map);
 
 
         /**
@@ -111,11 +113,7 @@ public class LambdaStudy {
          */
 
 
-
     }
-
-
-
 
 
 }
