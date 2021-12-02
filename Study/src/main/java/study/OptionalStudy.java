@@ -11,6 +11,12 @@ public class OptionalStudy {
     public void test(){
 
 
+        System.out.println(Optional.ofNullable(new Person("tyy",20))
+                .filter(person -> person.getAge()>10)
+
+        );
+
+
     }
 
 }

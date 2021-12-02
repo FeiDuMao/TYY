@@ -4,6 +4,7 @@ import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@Slf4j
 public class test {
 
 
@@ -84,7 +86,9 @@ public class test {
 
     @Test
     public void test3(){
-        System.out.println(8>>5);
+
+
+
     }
 
 
