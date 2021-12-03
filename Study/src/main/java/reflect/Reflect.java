@@ -1,5 +1,6 @@
 package reflect;
 
+import Entity.Person;
 import Entity.TreeNode;
 import org.junit.Test;
 
@@ -13,8 +14,8 @@ public class Reflect {
 
     public static void main(String[] args) throws Exception {
         //加载类
-        Class clazz=Class.forName("Entity.TreeNode");
-        Class clazz2=ClassLoader.getSystemClassLoader().loadClass(TreeNode.class.getName());
+        Class clazz=Class.forName("Entity.Person");
+        Class clazz2=ClassLoader.getSystemClassLoader().loadClass(Person.class.getName());
 
         //获取所有属性
         Field[] declaredFields = clazz.getDeclaredFields();
@@ -28,12 +29,11 @@ public class Reflect {
             System.out.println(declaredMethod);
         }
 
-        TreeNode node = (TreeNode) clazz.newInstance();
-        System.out.println(clazz.getCanonicalName());
-
-        Method setVal = clazz.getDeclaredMethod("setVal", int.class);
-        setVal.invoke(node,1);
-        System.out.println(node);
+        Method setName = clazz.getDeclaredMethod("setName", String.class);
+        Person o = (Person) clazz.newInstance();
+        setName.setAccessible(true);
+        setName.invoke(o,"tyy");
+        System.out.println(o);
 
 
     }

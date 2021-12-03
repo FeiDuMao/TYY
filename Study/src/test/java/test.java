@@ -10,6 +10,7 @@ import org.junit.Test;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -69,24 +70,16 @@ public class test {
 
     @Test
     public void test2(){
-        LocalDate date=LocalDate.now();
-        LocalDate date1=LocalDate.of(2020,1,1);
 
-        LocalTime time=LocalTime.now();
-        System.out.println(time);
-
-        LocalDateTime dateTime=LocalDateTime.now();
-        System.out.println(dateTime);
-
-        System.out.println(date1.isBefore(date));
-        System.out.println(date);
+        LocalDateTime now = LocalDateTime.now(ZoneId.of("America/New_York"));
+        System.out.println(LocalTime.now());
+        System.out.println(now);
 
     }
 
 
     @Test
     public void test3(){
-
 
 
     }

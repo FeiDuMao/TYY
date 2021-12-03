@@ -2,9 +2,11 @@ package Entity;
 
 import lombok.*;
 
-@Data
+@Getter
+@Setter(AccessLevel.PRIVATE)
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Person {
     private String name;
     private Integer age;
