@@ -3,9 +3,10 @@ package com.example.spbt.adapter.entity;
 import lombok.Data;
 
 @Data
-public class loginUserTerms {
+public class LoginBody {
     String username;
     String password;
-    String token;
-    String captcha;
+    //String captcha;
+    //String uuid;
+
 }

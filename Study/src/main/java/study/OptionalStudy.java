@@ -12,6 +12,9 @@ public class OptionalStudy {
     @Test
     public void test(){
 
+        Optional<String>o = Optional.of(getVar());
+        String s = o.get();
+
 
         System.out.println(Optional.ofNullable(new Person("tyy",20))
                 .filter(person -> person.getAge()>10)
@@ -19,6 +22,10 @@ public class OptionalStudy {
 
 
 
+    }
+
+    private String getVar(){
+        return "var";
     }
 
 }

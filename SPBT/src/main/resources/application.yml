@@ -1,0 +1,12 @@
+
+
+
+
+
+
+
+jwt:
+  header: Authorization
+  head: Bearer
+  secret: 12345
+  expireTime: 604800000
