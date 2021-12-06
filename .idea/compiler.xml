@@ -9,9 +9,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Study" />
         <module name="SPBT" />
+        <module name="jwt" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="jwt" target="1.8" />
       <module name="SPBT" target="1.8" />
       <module name="SpringBootStudy" target="1.8" />
       <module name="Study" target="8" />
@@ -21,6 +23,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="SPBT" options="-parameters" />
       <module name="SpringBootStudy" options="-parameters" />
+      <module name="jwt" options="-parameters" />
     </option>
   </component>
 </project>
