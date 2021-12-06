@@ -1,13 +1,15 @@
-package com.example.springbootstudy;
+package com.example.spbt;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootStudyApplication {
+public class SpbtApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootStudyApplication.class, args);
+        SpringApplication.run(SpbtApplication.class, args);
+
+        System.out.println("start success!");
     }
 
 }

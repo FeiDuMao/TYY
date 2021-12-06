@@ -8,16 +8,18 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Study" />
-        <module name="SpringBootStudy" />
+        <module name="SPBT" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="SPBT" target="1.8" />
       <module name="SpringBootStudy" target="1.8" />
       <module name="Study" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="SPBT" options="-parameters" />
       <module name="SpringBootStudy" options="-parameters" />
     </option>
   </component>
