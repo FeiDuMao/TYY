@@ -9,10 +9,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Study" />
         <module name="SPBT" />
-        <module name="jwt" />
+        <module name="AUTH" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="AUTH" target="1.8" />
       <module name="jwt" target="1.8" />
       <module name="SPBT" target="1.8" />
       <module name="SpringBootStudy" target="1.8" />
@@ -21,6 +22,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="AUTH" options="-parameters" />
       <module name="SPBT" options="-parameters" />
       <module name="SpringBootStudy" options="-parameters" />
       <module name="jwt" options="-parameters" />
