@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 public class TokenServiceImpl implements TokenService {
 
     private static final String SECRET="abcdefg";
-    private static final Long EXPIRED_TIME=604800000L;
+    private static final Long EXPIRED_TIME=604800000L;//1000*60*60*24*7 (7天)
 
 
     @Override

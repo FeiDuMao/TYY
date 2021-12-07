@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api")
 public class LoginController {
 
     LoginService loginService;
@@ -28,6 +28,7 @@ public class LoginController {
         AuthorizedUser authorizedUser = loginService.login(loginBody);
         return authorizedUser;
     }
+
 
 
 

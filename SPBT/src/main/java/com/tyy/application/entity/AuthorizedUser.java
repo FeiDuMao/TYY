@@ -20,6 +20,7 @@ public class AuthorizedUser implements UserDetails, Serializable {
         this.username =user.getUsername();
         this.password = user.getPassword();
         this.enabled = user.isEnabled();
+
     }
     public AuthorizedUser(String username,String token){
         this.username=username;
