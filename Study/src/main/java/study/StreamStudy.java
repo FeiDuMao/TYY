@@ -1,10 +1,12 @@
 package study;
 
+import Entity.Person;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StreamStudy {
@@ -20,8 +22,7 @@ public class StreamStudy {
 
         stream.filter(str->str.startsWith("t")).forEach(System.out::println);
 
-
-
+        
 
     }
 }

@@ -3,6 +3,7 @@ package com.tyy.application.impl;
 
 import com.google.common.collect.Maps;
 import com.tyy.application.TokenService;
+import com.tyy.application.constant.JwtConstant;
 import com.tyy.application.entity.AuthorizedUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -24,6 +25,7 @@ public class TokenServiceImpl implements TokenService {
     private static final Long EXPIRED_TIME=604800000L;//1000*60*60*24*7 (7天)
 
 
+
     @Override
     public String GenerateToken(AuthorizedUser authorizedUser) {
 
@@ -40,6 +42,9 @@ public class TokenServiceImpl implements TokenService {
     public AuthorizedUser getUserFromToken(String token) {
         Claims claims = parseToken(token);
         String username = claims.getSubject();
+
+
+
         return new AuthorizedUser(username,token);
     }
 
