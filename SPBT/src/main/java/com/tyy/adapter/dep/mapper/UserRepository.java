@@ -1,6 +1,6 @@
-package com.tyy.mapper;
+package com.tyy.adapter.dep.mapper;
 
-import com.tyy.domain.User;
+import com.tyy.adapter.dep.entity.User;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;

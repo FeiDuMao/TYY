@@ -1,14 +1,10 @@
 package reflect;
 
 import Entity.Person;
-import Entity.TreeNode;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.concurrent.TransferQueue;
 
 public class Reflect {
 
@@ -38,5 +34,22 @@ public class Reflect {
 
     }
 
+    @Test
+    public void test(){
+        Person person=new Person("tyy",10);
+        Class clazz= null;
+        try {
+            clazz = Class.forName(person.getClass().getName());
+
+            Field[] declaredFields = clazz.getDeclaredFields();
+            for (Field field:declaredFields){
+                System.out.println(field.toString());
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }

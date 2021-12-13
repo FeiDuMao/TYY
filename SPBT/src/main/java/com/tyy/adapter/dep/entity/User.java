@@ -1,4 +1,4 @@
-package com.tyy.domain;
+package com.tyy.adapter.dep.entity;
 
 import lombok.Data;
 

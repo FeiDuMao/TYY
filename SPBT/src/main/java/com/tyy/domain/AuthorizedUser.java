@@ -1,6 +1,6 @@
-package com.tyy.application.entity;
+package com.tyy.domain;
 
-import com.tyy.domain.User;
+import com.tyy.adapter.dep.entity.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
