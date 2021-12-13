@@ -36,20 +36,28 @@ public class Reflect {
 
     @Test
     public void test(){
-        Person person=new Person("tyy",10);
+        Person person=new Person();
+        System.out.println(validate(person));
+
+    }
+
+
+    //判断对象内的属性是否有值为null;
+    private boolean validate(Object o){
         Class clazz= null;
         try {
-            clazz = Class.forName(person.getClass().getName());
-
+            clazz = Class.forName(o.getClass().getName());
             Field[] declaredFields = clazz.getDeclaredFields();
             for (Field field:declaredFields){
-                System.out.println(field.toString());
+                field.setAccessible(true);
+                if (field.get(o)==null){
+                    return false;
+                }
             }
-
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | IllegalAccessException e) {
             e.printStackTrace();
         }
-
+        return true;
     }
 
 }

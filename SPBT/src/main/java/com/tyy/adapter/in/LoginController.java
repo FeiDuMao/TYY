@@ -31,7 +31,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public RespBody login(@RequestBody LoginBody loginBody,HttpServletRequest request){
-        if (!validateLoginBody(loginBody)){
+        if (!loginService.validate(loginBody)){
             return RespBody.ERROR(null,"登录参数错误");
         }
         if (!captchaService.validateCaptcha(request,loginBody)){
@@ -45,9 +45,16 @@ public class LoginController {
     }
 
     @RequestMapping("/register")
-    public RespBody register(@RequestBody RegisterBody registerBody){
+    public RespBody register(@RequestBody RegisterBody registerBody) throws ClassNotFoundException {
+        if (loginService.validate(registerBody)){
+            return RespBody.ERROR(null,"登录参数错误");
+        }
+        if (loginService.register(registerBody)){
+            return RespBody.OK(null,"注册成功");
+        }else {
+            return RespBody.ERROR(null,"该用户名已存在");
+        }
 
-        return RespBody.ERROR(null,"unknown error");
     }
 
     @RequestMapping("/getCaptcha")
