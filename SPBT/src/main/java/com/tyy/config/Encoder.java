@@ -1,4 +1,4 @@
-package com.tyy.application.config;
+package com.tyy.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

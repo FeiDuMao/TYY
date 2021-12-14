@@ -1,6 +1,6 @@
 package com.tyy.application;
 
-import com.tyy.application.entity.AuthorizedUser;
+import com.tyy.domain.AuthorizedUser;
 
 public interface TokenService {
 

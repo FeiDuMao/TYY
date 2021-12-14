@@ -1,29 +1,22 @@
 package com.tyy.application.impl;
 
 
-import com.google.common.collect.Maps;
 import com.tyy.application.TokenService;
-import com.tyy.application.constant.JwtConstant;
-import com.tyy.application.entity.AuthorizedUser;
+import com.tyy.domain.AuthorizedUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class TokenServiceImpl implements TokenService {
 
     private static final String SECRET="abcdefg";
     private static final Long EXPIRED_TIME=604800000L;//1000*60*60*24*7 (7天)
-
 
 
     @Override
@@ -34,7 +27,7 @@ public class TokenServiceImpl implements TokenService {
         return Jwts.builder()
                 .setSubject(authorizedUser.getUsername())
                 .setExpiration(getExpiredTime())
-                .signWith(SignatureAlgorithm.HS256,SECRET)
+                .signWith(SignatureAlgorithm.HS512,SECRET)
                 .compact();
     }
 
@@ -42,9 +35,6 @@ public class TokenServiceImpl implements TokenService {
     public AuthorizedUser getUserFromToken(String token) {
         Claims claims = parseToken(token);
         String username = claims.getSubject();
-
-
-
         return new AuthorizedUser(username,token);
     }
 

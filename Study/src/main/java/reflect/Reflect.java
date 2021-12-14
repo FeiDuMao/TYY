@@ -1,14 +1,10 @@
 package reflect;
 
 import Entity.Person;
-import Entity.TreeNode;
 import org.junit.Test;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.concurrent.TransferQueue;
 
 public class Reflect {
 
@@ -38,5 +34,30 @@ public class Reflect {
 
     }
 
+    @Test
+    public void test(){
+        Person person=new Person();
+        System.out.println(validate(person));
+
+    }
+
+
+    //判断对象内的属性是否有值为null;
+    private boolean validate(Object o){
+        Class clazz= null;
+        try {
+            clazz = Class.forName(o.getClass().getName());
+            Field[] declaredFields = clazz.getDeclaredFields();
+            for (Field field:declaredFields){
+                field.setAccessible(true);
+                if (field.get(o)==null){
+                    return false;
+                }
+            }
+        } catch (ClassNotFoundException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
 
 }

@@ -15,7 +15,7 @@ mangoDB
 Optional
 stream().xxx 
 java8新特性学习
-
+**泛型擦除**
 对象转MAP
 
 JPA

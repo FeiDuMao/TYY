@@ -1,7 +1,7 @@
 package com.tyy.adapter.in;
 
-import com.tyy.adapter.entity.LoginBody;
-import com.tyy.application.entity.AuthorizedUser;
+import com.tyy.adapter.in.view.LoginBody;
+import com.tyy.domain.AuthorizedUser;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;

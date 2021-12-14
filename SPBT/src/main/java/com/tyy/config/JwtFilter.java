@@ -1,7 +1,7 @@
-package com.tyy.application.filter;
+package com.tyy.config;
 
 import com.tyy.application.TokenService;
-import com.tyy.application.entity.AuthorizedUser;
+import com.tyy.domain.AuthorizedUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
