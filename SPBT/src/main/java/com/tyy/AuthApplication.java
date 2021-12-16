@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
-@MapperScan("com.tyy.adapter.dep.mapper")
+@MapperScan("com.tyy.auth.adapter.dep.mapper")
 @SpringBootApplication
 public class AuthApplication {
 
