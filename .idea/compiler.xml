@@ -8,11 +8,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Study" />
-        <module name="SPBT" />
+        <module name="auth" />
         <module name="AUTH" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="auth" target="1.8" />
       <module name="AUTH" target="1.8" />
       <module name="jwt" target="1.8" />
       <module name="SPBT" target="1.8" />
@@ -25,6 +26,7 @@
       <module name="AUTH" options="-parameters" />
       <module name="SPBT" options="-parameters" />
       <module name="SpringBootStudy" options="-parameters" />
+      <module name="auth" options="-parameters" />
       <module name="jwt" options="-parameters" />
     </option>
   </component>
