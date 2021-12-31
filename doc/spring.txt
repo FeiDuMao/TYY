@@ -1,0 +1,3 @@
+
+执行顺序
+Constructor >> @Autowired >> @PostConstruct

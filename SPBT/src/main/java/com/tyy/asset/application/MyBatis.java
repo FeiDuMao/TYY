@@ -35,7 +35,8 @@ public interface MyBatis {
             + "#{item}"
             + "</foreach>"
             + "</script>")
-    @Results(value = {
+    @Results( id = "TestData",
+            value = {
             @Result(column = "fund_id",property = "fundId"),
             @Result(column = "factor_id",property = "factorId"),
             @Result(column = "data",property = "data"),
@@ -56,12 +57,7 @@ public interface MyBatis {
             + "#{item}"
             + "</foreach>"
             + "</script>")
-    @Results(value = {
-            @Result(column = "fund_id",property = "fundId"),
-            @Result(column = "factor_id",property = "factorId"),
-            @Result(column = "data",property = "data"),
-            @Result(column = "create_time",property = "createTime")
-    })
+    @ResultMap(value = "TestData")
     List<TestData> getByFundIdAndFactorId(@Param("fundIds") List<String> fundIds,@Param("factorIds") List<String> factorIds);
 
 }
