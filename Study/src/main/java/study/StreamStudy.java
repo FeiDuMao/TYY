@@ -1,8 +1,10 @@
 package study;
 
 import Entity.Person;
+import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Multimap;
 import org.junit.Test;
 
 import java.util.*;
@@ -79,7 +81,20 @@ public class StreamStudy {
         result.values().forEach(System.out::println);
 
 
+        Stream<String> stream = result.keySet().stream().filter(k -> k.contains("1"));
+
+
     }
 
+
+    @Test
+    public void test3() {
+        HashMultimap<String, String> map = HashMultimap.create();
+        map.put("123","a");
+        map.put("123","b");
+        map.put("123","c");
+
+
+    }
 
 }
