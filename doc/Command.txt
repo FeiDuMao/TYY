@@ -12,3 +12,10 @@ tar -xzvf 源文件.tar.gz	[-C dir_name]	//将源文件解压到当前目录下 
     -J：通过xz过滤归档
 
 find / -name "*.conf"	//找到根目录下，以.conf结尾的文件
+
+windows运行环境搭建
+**须在管理员模式运行
+启动redis：redis-server（有时可能需要指定配置文件：进入redis根目录，redis-server redis.windos.conf ）
+启动mysql：net start mysql
+关闭mysql：net stop mysql
+

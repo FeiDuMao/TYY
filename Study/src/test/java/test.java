@@ -1,5 +1,6 @@
 
 import Entity.ListNode;
+import Entity.Person;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -12,8 +13,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.stream.*;
+
+import static java.util.stream.Collectors.groupingBy;
 
 @Slf4j
 public class test {
@@ -71,15 +73,20 @@ public class test {
     @Test
     public void test2(){
 
-        LocalDateTime now = LocalDateTime.now(ZoneId.of("America/New_York"));
-        System.out.println(LocalTime.now());
-        System.out.println(now);
-
     }
 
 
     @Test
     public void test3(){
+
+        List<Person> people = Lists.newArrayList(new Person("tyy", LocalDate.parse("2022-01-01")), new Person("ddd", LocalDate.parse("2022-01-03")), new Person("ccc", LocalDate.parse("2022-01-02")));
+
+        people = people.stream().filter(person -> person.getName() != "tyy").sorted(Person::compareByDate).collect(Collectors.toList());
+        people.sort(Person::compareByDate);
+        people.forEach(System.out::println);
+
+
+
 
 
     }

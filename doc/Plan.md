@@ -15,7 +15,13 @@ mangoDB
 Optional
 stream().xxx 
 java8新特性学习
-
+**泛型擦除**
 对象转MAP
 
 JPA
+
+主键自增
+代理模式
+json序列化与反序列化
+objectMapper
+
