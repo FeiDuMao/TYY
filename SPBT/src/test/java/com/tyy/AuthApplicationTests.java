@@ -1,17 +1,20 @@
 package com.tyy;
 
 import com.google.common.collect.Lists;
+import com.tyy.asset.adapter.AlternateFundEntity;
 import com.tyy.asset.adapter.TestData;
+import com.tyy.asset.application.AlternateFundRepository;
 import com.tyy.asset.application.Mapper;
-import com.tyy.asset.application.MyBatis;
+import com.tyy.asset.util.JsonUtil;
 import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,28 +22,47 @@ import java.util.List;
 @SpringBootTest
 class AuthApplicationTests {
 
-
     @Autowired
-    MyBatis myBatis;
+    AlternateFundRepository alternateFundRepository;
 
-    @Autowired
-    Mapper mapper;
+
+    public  static  String t;
+
+    @Value("${asset.factor.id1:123123}")
+    public  void setT(String t) {
+        AuthApplicationTests.t = t;
+    }
 
     @Test
     void contextLoads() {
 
-        ArrayList<String> fundIds = Lists.newArrayList("000e6e8e-3040-11ec-a020-00163e047fc4");
-        ArrayList<String> factorIds = Lists.newArrayList("33df00d217a0", "123123123123");
+
+        AlternateFundEntity alternateFundEntity =
+                new AlternateFundEntity("xxx","xxx","c","xxx",null,null,"xxx","xxx",LocalDate.parse("2020-01-21"),"xxx");
+
+        List<AlternateFundEntity> xxx1 = alternateFundRepository.getAllByUserId("xxx");
+        AlternateFundEntity xxx = alternateFundRepository.getById("xxx");
+
+        AlternateFundEntity save = alternateFundRepository.save(alternateFundEntity);
+
+        System.out.println("======================");
 
 
-        List<TestData> byFactorIdList = myBatis.getByFactorIdList(factorIds);
+        List<AlternateFundEntity> all = alternateFundRepository.findAll();
+        all.forEach(System.out::println);
 
-        List<TestData> allByFundId = mapper.getAllByFundId(fundIds);
-
-        List<TestData> byFundIdAndFactorId = myBatis.getByFundIdAndFactorId(fundIds,factorIds);
+        System.out.println("======================");
 
     }
 
 
+
+
+    @Test
+    public void test2(){
+
+        System.out.println(t);
+        System.out.println("xxxx");
+    }
 
 }

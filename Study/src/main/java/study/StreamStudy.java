@@ -5,6 +5,7 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.Test;
 
 import java.util.*;
@@ -89,10 +90,10 @@ public class StreamStudy {
 
     @Test
     public void test3() {
-        HashMultimap<String, String> map = HashMultimap.create();
-        map.put("123","a");
-        map.put("123","b");
-        map.put("123","c");
+        ArrayList<String> list = Lists.newArrayList("AAA", "BBB");
+
+        System.out.println(list.toString());
+
 
 
     }

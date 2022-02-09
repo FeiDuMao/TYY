@@ -1,58 +1,62 @@
 package concurrent;
 
+import org.junit.Test;
+
 public class test4 {
 
     private static volatile int m=0;
 
-    public static void main(String[] args) {
-
-        int t=0;
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true){
-                    if (m==0){
-                        System.out.println("AAA");
-                        try {
-                            Thread.sleep(500);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        m=1;
-                    }
-                }
-            }
-        }).start();
+    @Test
+    public void main() {
 
 
         new Thread(new Runnable() {
             @Override
             public void run() {
 
-                ThreadLocal<Integer> integerThreadLocal=new ThreadLocal<>();
-                integerThreadLocal.set(1);
                 while (true){
                     if (m==1){
-                        System.out.println("BBB");
-                        try {
-                            Thread.sleep(500);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        m=0;
+                        System.out.println("aaa");
+                    }
+                    if (m==2){
+                        System.out.println("bbb");
+                    }
+                    if (m==3){
+                        System.out.println("ccc");
+                    }
+                    if (m==4){
+                        break;
+                    }
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 4; i++) {
+                    m++;
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                 }
             }
         }).start();
 
 
-        ThreadLocal<String> local=new ThreadLocal<>();
+        try {
+            Thread.sleep(100000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-        local.set("123");
-        local.remove();
-
-        System.out.println(local.get());
-        System.out.println("Lock Test");
     }
 
 }
