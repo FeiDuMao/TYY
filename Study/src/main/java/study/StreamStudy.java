@@ -8,8 +8,11 @@ import com.google.common.collect.Multimap;
 import org.checkerframework.checker.units.qual.A;
 import org.junit.Test;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
 
 public class StreamStudy {
@@ -17,29 +20,10 @@ public class StreamStudy {
 
     @Test
     public void test() {
-        String[] arr = new String[]{"a", "tb", "tc", "d"};
 
-        //Stream<String>stream=Stream.of(arr);
-        Stream<String> stream = Arrays.stream(arr);
-
-        stream.filter(str -> str.startsWith("t")).forEach(System.out::println);
-
-
-        ArrayList<Person> people = Lists.newArrayList(new Person("tyy", 12), new Person("aaa", 13));
-
-        //List转map
-        Map<String, Integer> personMap = people.stream().collect(Collectors.toMap(
-                Person::getName,  //key
-                Person::getAge    //val  p->p 表示将对象作为val
-        ));
-
-        //people.stream().flatMap();
-
-
-        personMap.forEach((k, v) -> {
-            System.out.println(k + ": " + v);
-        });
-
+        ArrayList<Double> doubles = Lists.newArrayList(1.1, 2.2, 3.3, 4.4);
+        double sum = doubles.stream().flatMapToDouble(d -> DoubleStream.of(d)).sum();
+        Optional<Double> max = doubles.stream().max(Double::compareTo);
 
     }
 
@@ -50,6 +34,7 @@ public class StreamStudy {
     @Test
     public void test2() {
 
+        Double a=null;
 
         Map<String, Double> result = new HashMap<>();
         result.put("1", 1.1);
@@ -90,10 +75,12 @@ public class StreamStudy {
 
     @Test
     public void test3() {
-        ArrayList<String> list = Lists.newArrayList("AAA", "BBB");
 
-        System.out.println(list.toString());
 
+        final List<String> strings;
+        strings=new ArrayList<>();
+        strings.add("111");
+        strings.remove("111");
 
 
     }

@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,7 +26,7 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor
-public class Controller {
+public class Controller22 {
 
     @RequestMapping("/get")
     public String get(){
@@ -34,13 +36,19 @@ public class Controller {
 
 
     @RequestMapping("/test")
-    public boolean test(@RequestBody List<String>list){
+    public boolean test(@RequestBody List<String> list){
         list.forEach(System.out::println);
         return true;
     }
 
-    @RequestMapping("/map")
-    public Map<String,Integer> test2(@RequestBody List<String>list){
+    @RequestMapping("/test2")
+    public boolean test2(@RequestBody String s){
+        System.out.println(s);
+        return true;
+    }
+
+    @RequestMapping("/fund/{reportDate}")
+    public Map<String,Integer> test2(@RequestBody List<String> fundIds, @PathVariable String reportDate){
         Map<String, Integer> map2 = new HashMap<>();
         map2.put("2021-01-01",1);
         map2.put("2021-01-05",5);

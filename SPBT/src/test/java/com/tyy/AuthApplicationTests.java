@@ -3,7 +3,8 @@ package com.tyy;
 import com.google.common.collect.Lists;
 import com.tyy.asset.adapter.AlternateFundEntity;
 import com.tyy.asset.adapter.TestData;
-import com.tyy.asset.application.AlternateFundRepository;
+import com.tyy.asset.application.FundAssetPositionEntity;
+import com.tyy.asset.application.FundAssetPositionRepository;
 import com.tyy.asset.application.Mapper;
 import com.tyy.asset.util.JsonUtil;
 import org.checkerframework.checker.units.qual.A;
@@ -17,14 +18,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 class AuthApplicationTests {
 
     @Autowired
-    AlternateFundRepository alternateFundRepository;
-
+    FundAssetPositionRepository fundAssetPositionRepository;
 
     public  static  String t;
 
@@ -35,34 +36,29 @@ class AuthApplicationTests {
 
     @Test
     void contextLoads() {
+        List<FundAssetPositionEntity> netAsset = fundAssetPositionRepository.getNetAsset("00017bb8-21ce-11e8-9a06-c4b301c5b6bb");
 
-
-        AlternateFundEntity alternateFundEntity =
-                new AlternateFundEntity("xxx","xxx","c","xxx",null,null,"xxx","xxx",LocalDate.parse("2020-01-21"),"xxx");
-
-        List<AlternateFundEntity> xxx1 = alternateFundRepository.getAllByUserId("xxx");
-        AlternateFundEntity xxx = alternateFundRepository.getById("xxx");
-
-        AlternateFundEntity save = alternateFundRepository.save(alternateFundEntity);
-
-        System.out.println("======================");
-
-
-        List<AlternateFundEntity> all = alternateFundRepository.findAll();
-        all.forEach(System.out::println);
 
         System.out.println("======================");
 
     }
-
+    private Double fundScoreConverter(Double score) {
+        if (score > 100) return Double.NaN;
+        if (score >= 80) return 5d;
+        if (score >= 60) return 4d;
+        if (score >= 40) return 3d;
+        if (score >= 20) return 4d;
+        if (score >= 0) return 1d;
+        return Double.NaN;
+    }
 
 
 
     @Test
     public void test2(){
 
-        System.out.println(t);
-        System.out.println("xxxx");
+        System.out.println(fundScoreConverter(90d));
+
     }
 
 }
