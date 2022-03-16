@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.annotation.ManagedBean;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;

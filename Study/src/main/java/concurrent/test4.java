@@ -1,61 +1,53 @@
 package concurrent;
 
+import lombok.SneakyThrows;
 import org.junit.Test;
 
 public class test4 {
 
     private static volatile int m=0;
 
+    private static int x=100;
+
     @Test
+    @SneakyThrows
     public void main() {
 
+        new Thread(()->{
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                while (true){
-                    if (m==1){
-                        System.out.println("aaa");
-                    }
-                    if (m==2){
-                        System.out.println("bbb");
-                    }
-                    if (m==3){
-                        System.out.println("ccc");
-                    }
-                    if (m==4){
-                        break;
-                    }
+            while (true){
+                if (m==0){
+                    System.out.println(Thread.currentThread().getName()+ x--);
+                    m=1;
                     try {
-                        Thread.sleep(100);
+                        Thread.sleep(200);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
             }
-        }).start();
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0; i < 4; i++) {
-                    m++;
+        },"A").start();
+
+
+        new Thread(()->{
+
+            while (true){
+                if (m==1){
+                    System.out.println(Thread.currentThread().getName()+ x--);
+                    m=0;
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(200);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
             }
-        }).start();
+        },"B").start();
 
 
-        try {
-            Thread.sleep(100000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
+        Thread.sleep(100000);
 
     }
 

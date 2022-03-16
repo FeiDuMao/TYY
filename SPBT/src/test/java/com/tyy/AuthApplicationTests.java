@@ -17,6 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -58,6 +59,24 @@ class AuthApplicationTests {
     public void test2(){
 
         System.out.println(fundScoreConverter(90d));
+
+
+        LocalDate l1=LocalDate.parse("2021-01-01");
+        LocalDate l2=LocalDate.parse("2021-01-02");
+        LocalDate l3=LocalDate.parse("2021-01-03");
+        LocalDate l4=LocalDate.parse("2021-01-04");
+
+        HashMap<LocalDate, Object> map = new HashMap<>();
+
+        map.put(l2,1);
+        map.put(l3,1);
+        map.put(l4,1);
+        map.put(l1,1);
+
+
+        ArrayList<LocalDate> localDates = new ArrayList<>(map.keySet());
+
+
 
     }
 

@@ -1,5 +1,8 @@
 package concurrent;
 
+import Entity.Person;
+import org.junit.Test;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class threadLocal {
@@ -13,6 +16,9 @@ public class threadLocal {
         }
     };
 
+    ThreadLocal<Person>personThreadLocal=new ThreadLocal<>();
+
+
     public static int get(){
         return localId.get();
     }
@@ -21,6 +27,9 @@ public class threadLocal {
     }
 
     public static void main(String[] args) {
+
+
+
 
         new Thread(()->{
             for (int i = 0; i < 3; i++) {
@@ -39,6 +48,17 @@ public class threadLocal {
             System.out.println(Thread.currentThread().getName()+"     "+threadLocal.get());
         }
     }
+
+
+
+    @Test
+    public void test(){
+
+        personThreadLocal.set(new Person("tyy",10));
+
+
+    }
+
 
 
 }
