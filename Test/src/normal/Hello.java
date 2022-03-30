@@ -1,23 +1,80 @@
 package normal;
 
+import com.google.common.collect.Comparators;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.nio.file.Path;
 import java.time.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Hello {
-    public static void main(String[] args) {
 
-        String s = "fd6507a5-561b-471d-9c59-7d3c7c238c6b?_t=1639559238257";
-        String substring = s.substring(0, s.indexOf('?'));
-        System.out.println(substring);
+class fruit implements Comparable<fruit> {
+    int weight;
+    int value;
 
-
+    public fruit(int weight, int value) {
+        this.weight = weight;
+        this.value = value;
     }
+
+    public fruit() {
+    }
+
+
+    @Override
+    public int compareTo(fruit o) {
+        return Integer.compare(weight, o.weight);
+    }
+}
+
+
+public class Hello {
+
+
+    /**
+     * 水果重量问题
+     * @param args
+     */
+    public static void main(String[] args) {
+        fruit[] fruits = new fruit[]{new fruit(), new fruit(), new fruit(), new fruit(), new fruit()};
+        Scanner s = new Scanner(System.in);
+        for (int i = 0; i < 5; i++) {
+            fruits[i].weight = s.nextInt();
+        }
+        for (int i = 0; i < 5; i++) {
+            fruits[i].value = s.nextInt();
+        }
+        int maxWeight = s.nextInt();
+        s.close();
+
+        ArrayList<fruit> fruitArrayList = Lists.newArrayList(fruits);
+        fruitArrayList.sort(fruit::compareTo);
+
+        int maxValue=-1;
+        while (true){
+
+            int []  count=new int [5];
+            int sum =0;
+            int val=0;
+            while(sum<=maxWeight){
+                for (int i = 0; i < 5; i++) {
+                    sum+=fruitArrayList.get(i).weight;
+                    val+=fruitArrayList.get(i).value;
+                    count[i]++;
+                }
+            }
+            break;
+        }
+    }
+
+
+
+
 
 
     @Test
@@ -48,11 +105,11 @@ public class Hello {
 
     @Test
     public void test2() {
-        ArrayList<String> list = Lists.newArrayList("123", "321", "222","123", "321", "222","123", "321", "222","1244");
-        Multimap<String,String>multimap= HashMultimap.create();
-        multimap.put("111","111");
-        multimap.put("111","111");
-        multimap.put("111","333");
+        ArrayList<String> list = Lists.newArrayList("123", "321", "222", "123", "321", "222", "123", "321", "222", "1244");
+        Multimap<String, String> multimap = HashMultimap.create();
+        multimap.put("111", "111");
+        multimap.put("111", "111");
+        multimap.put("111", "333");
 
         Collection<String> strings = multimap.get("111");
 
@@ -60,15 +117,14 @@ public class Hello {
         List<List<String>> partition = Lists.partition(list, list.size());
 
 
-
         int size = list.size();
         int p = size / 3;
-        List<List<String>>partList=new ArrayList<>();
+        List<List<String>> partList = new ArrayList<>();
         int i = 0;
         for (; i < 3; i++) {
-            partList.add(list.subList(i*p,(i+1)*p));
+            partList.add(list.subList(i * p, (i + 1) * p));
         }
-        partList.add(list.subList(i*p,size));
+        partList.add(list.subList(i * p, size));
 
         String join = String.join(",", list);
 
@@ -79,7 +135,7 @@ public class Hello {
     @Test
     public void test3() {
 
-        ArrayList<String> list = Lists.newArrayList("111", "444","111");
+        ArrayList<String> list = Lists.newArrayList("111", "444", "111");
 
 
         Collections.reverse(list);
@@ -112,26 +168,41 @@ public class Hello {
     private String getQueryCode(Double code) {
 
         while (code % 10 == 0) {
-            code/=10;
+            code /= 10;
         }
         return String.valueOf(code.longValue());
 
     }
 
     @Test
-    public void test4(){
-        Double a=200101041d;
+    public void test4() {
+        Double a = 200101041d;
         System.out.println(getQueryCode(a));
     }
 
 
+    public Double sum(List<? extends Number> list) {
+        Double sum = 0d;
+        for (Number number : list) {
+            sum += number.doubleValue();
+        }
+        return sum;
+    }
 
 
     @Test
-    public void test5(){
-
+    public void test5() {
+        Scanner scan = new Scanner(System.in);
+        // 从键盘接收数据
+        // nextLine方式接收字符串
+        System.out.println("nextLine方式接收：");
+        // 判断是否还有输入
+        if (scan.hasNextLine()) {
+            String str2 = scan.nextLine();
+            System.out.println("输入的数据为：" + str2);
+        }
+        scan.close();
     }
-
 
 
 }

@@ -1,6 +1,7 @@
 package study;
 
 import org.junit.Test;
+import scala.Int;
 
 import java.util.*;
 
@@ -319,10 +320,13 @@ public class ArrayStudy {
     }
 
 
+
     @Test
     public void test() {
         //0 1 1 2 3 5 8 13 21
         System.out.println(Feibo(9));
+
+
     }
 
 

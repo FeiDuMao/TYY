@@ -44,9 +44,8 @@ public class Reflect {
 
     //判断对象内的属性是否有值为null;
     private boolean validate(Object o){
-        Class clazz= null;
         try {
-            clazz = Class.forName(o.getClass().getName());
+            Class clazz = Class.forName(o.getClass().getName());
             Field[] declaredFields = clazz.getDeclaredFields();
             for (Field field:declaredFields){
                 field.setAccessible(true);

@@ -1,6 +1,10 @@
 package concurrent;
 
+import lombok.SneakyThrows;
+
+import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @Classname Lock
@@ -12,11 +16,10 @@ public class Lock {
 
     static int x=100;
 
+    @SneakyThrows
     public static void main(String[] args) {
 
-        Lock lock=new Lock();
-
-
+        ReentrantLock lock = new ReentrantLock();
 
         new Thread(()->{
             System.out.println(x--);
