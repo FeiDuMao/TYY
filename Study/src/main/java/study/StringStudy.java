@@ -190,27 +190,44 @@ public class StringStudy {
     }
 
     //反转字符串，以单词为最小单位
-    public void reverse2(String s){
+    public void reverse2(String s) {
         String[] s1 = s.split(" ");
-        StringBuilder sb=new StringBuilder();
-        for (int i = s1.length-1; i >=0; i--) {
-            sb.append(s1[i]+" ");
+        StringBuilder sb = new StringBuilder();
+        for (int i = s1.length - 1; i >= 0; i--) {
+            sb.append(s1[i] + " ");
         }
         System.out.println(sb);
     }
 
-    public void replace(String s,String o,String n){
+    public void replace(String s, String o, String n) {
         s.indexOf(0);
     }
 
+    /**
+     * 打印一个三角形，用N控制层数
+     */
+    public void printTriangle() {
+        int N = 10;
+        int step = 1 + 2 * N;
+        for (int i = 0; i < N; i++) {
+            for (int j = i; j < step / 2; j++) {
+                System.out.print(" ");
+            }
+            for (int j = 0; j < 1 + 2 * i; j++) {
+                System.out.print("*");
+            }
+            for (int j = i; j < step / 2; j++) {
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
 
-
-
+    }
 
 
     @Test
     public void test() {
-        String s="this is a duck";
+        String s = "this is a duck";
         System.out.println(s.indexOf("is"));
 
     }
