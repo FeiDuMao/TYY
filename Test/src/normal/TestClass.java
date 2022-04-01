@@ -22,12 +22,12 @@ public class TestClass {
                                                Map<String, Double> dailyReturnAvgDiffMap,
                                                Map<String, Double> factorValueVarianceMap,
                                                Map<String, Double> absStockWeightDiffMap,
-                                               Map<String, Double> industryWeightVarianceMap){
+                                               Map<String, Double> industryWeightVarianceMap) {
         int poolSize = tracingErrorMap.size();
 
         // 计算追踪误差的得分
         List<Double> tracingErrorScoreSort = tracingErrorMap.values().stream().sorted().collect(Collectors.toList());
-        Map<String, Double> tracingErrorScore =  tracingErrorMap.keySet().stream().collect(Collectors.toMap(
+        Map<String, Double> tracingErrorScore = tracingErrorMap.keySet().stream().collect(Collectors.toMap(
                 k -> k,
                 k -> {
                     double tmp = tracingErrorMap.get(k);
@@ -37,7 +37,7 @@ public class TestClass {
 
         // 计算日收益差的得分
         List<Double> dailyReturnAvgDiffScoreSort = dailyReturnAvgDiffMap.values().stream().sorted().collect(Collectors.toList());
-        Map<String, Double> dailyReturnAvgDiffScore =  dailyReturnAvgDiffMap.keySet().stream().collect(Collectors.toMap(
+        Map<String, Double> dailyReturnAvgDiffScore = dailyReturnAvgDiffMap.keySet().stream().collect(Collectors.toMap(
                 k -> k,
                 k -> {
                     double tmp = dailyReturnAvgDiffMap.get(k);
@@ -46,7 +46,7 @@ public class TestClass {
         ));
 
         List<Double> absStockWeightDiffMapSort = absStockWeightDiffMap.values().stream().sorted().collect(Collectors.toList());
-        Map<String, Double> absStockWeightDiffMapScore =  absStockWeightDiffMap.keySet().stream().collect(Collectors.toMap(
+        Map<String, Double> absStockWeightDiffMapScore = absStockWeightDiffMap.keySet().stream().collect(Collectors.toMap(
                 k -> k,
                 k -> {
                     double tmp = absStockWeightDiffMap.get(k);
@@ -55,7 +55,7 @@ public class TestClass {
         ));
 
         List<Double> factorValueVarianceMapSort = factorValueVarianceMap.values().stream().sorted().collect(Collectors.toList());
-        Map<String, Double> factorValueVarianceMapScore =  factorValueVarianceMap.keySet().stream().collect(Collectors.toMap(
+        Map<String, Double> factorValueVarianceMapScore = factorValueVarianceMap.keySet().stream().collect(Collectors.toMap(
                 k -> k,
                 k -> {
                     double tmp = factorValueVarianceMap.get(k);
@@ -64,7 +64,7 @@ public class TestClass {
         ));
 
         List<Double> industryWeightVarianceMapSort = industryWeightVarianceMap.values().stream().sorted().collect(Collectors.toList());
-        Map<String, Double> industryWeightVarianceMapScore =  industryWeightVarianceMap.keySet().stream().collect(Collectors.toMap(
+        Map<String, Double> industryWeightVarianceMapScore = industryWeightVarianceMap.keySet().stream().collect(Collectors.toMap(
                 k -> k,
                 k -> {
                     double tmp = industryWeightVarianceMap.get(k);
@@ -90,8 +90,6 @@ public class TestClass {
                 .collect(Collectors.toList());
 
     }
-
-
 
 
     public static List<String> calculateStockResult(Map<String, Double> tracingErrorMap,
@@ -127,10 +125,10 @@ public class TestClass {
 
 
     @Test
-    public void test(){
+    public void test() {
 
 //        d0 [6.54260495863553, 5.8276626787474255, 7.530436937891162, 6.723942134438576, 7.447381138171787, 4.702689832495027]
-        Map<String, Double> tracingErrorMap = new HashMap<>(){
+        Map<String, Double> tracingErrorMap = new HashMap<>() {
             {
                 put("Fund1", 6.54260495863553);
                 put("Fund2", 5.8276626787474255);
@@ -142,7 +140,7 @@ public class TestClass {
         };
 
 //        [0.00186744, 0.00112916, 0.00229416, 0.0013706, 0.00153836, 0.00694308]
-        Map<String, Double> dailyReturnAvgDiffMap = new HashMap<>(){
+        Map<String, Double> dailyReturnAvgDiffMap = new HashMap<>() {
             {
                 put("Fund1", 0.00186744);
                 put("Fund2", 0.00112916);
@@ -153,7 +151,7 @@ public class TestClass {
             }
         };
 //        [0.13999999999999999, 0.43, 0.07, 0.019999999999999997, 0.12, 0.07]
-        Map<String, Double> absStockWeightDiffMap = new HashMap<>(){
+        Map<String, Double> absStockWeightDiffMap = new HashMap<>() {
             {
                 put("Fund1", 0.13999999999999999);
                 put("Fund2", 0.43);
@@ -164,7 +162,7 @@ public class TestClass {
             }
         };
 //          [0.18083, 0.06708, 0.21772, 0.17378, 0.17088, 0.14491]
-        Map<String, Double> industryWeightVarianceMap = new HashMap<>(){
+        Map<String, Double> industryWeightVarianceMap = new HashMap<>() {
             {
                 put("Fund1", 0.18083);
                 put("Fund2", 0.06708);
@@ -176,7 +174,7 @@ public class TestClass {
         };
 
 //        [0.59161, 1.28841, 0.91104, 0.8775, 0.9, 1.10905]
-        Map<String, Double> factorValueVarianceMap = new HashMap<>(){
+        Map<String, Double> factorValueVarianceMap = new HashMap<>() {
             {
                 put("Fund1", 0.59161);
                 put("Fund2", 1.28841);
@@ -202,7 +200,6 @@ public class TestClass {
                 industryWeightVarianceMap);
 
 
-
         Set<String> expectSet = new HashSet<>(expect);
         Set<String> resultSet = new HashSet<>(result);
 
@@ -211,13 +208,35 @@ public class TestClass {
     }
 
 
+    @Test
+    public void test3() {
+
+        int N = 10;
+        int step = 1 + 2 * N;
+        for (int i = 0; i < N; i++) {
+            for (int j = i; j < step / 2; j++) {
+                System.out.print(" ");
+            }
+            for (int j = 0; j < 1 + 2 * i; j++) {
+                System.out.print("*");
+            }
+            for (int j = i; j < step / 2; j++) {
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
+
 
     @Test
-    public void test3(){
+    public void test4() {
+
+        int[] arr = new int[]{2, 1, 5, 4, 2, 8};
 
 
 
 
     }
+
 
 }

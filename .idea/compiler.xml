@@ -20,7 +20,7 @@
       <module name="SBPT" target="1.8" />
       <module name="SPBT" target="1.8" />
       <module name="SpringBootStudy" target="1.8" />
-      <module name="Study" target="8" />
+      <module name="Study" target="9" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

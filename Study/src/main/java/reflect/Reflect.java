@@ -3,6 +3,7 @@ package reflect;
 import Entity.Person;
 import org.junit.Test;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -27,6 +28,9 @@ public class Reflect {
 
         Method setName = clazz.getDeclaredMethod("setName", String.class);
         Person o = (Person) clazz.newInstance();
+        Constructor[] declaredConstructors = clazz.getDeclaredConstructors();
+        declaredConstructors[0].getParameterCount();
+
         setName.setAccessible(true);
         setName.invoke(o,"tyy");
         System.out.println(o);
@@ -41,8 +45,11 @@ public class Reflect {
 
     }
 
-
-    //判断对象内的属性是否有值为null;
+    /**
+     * 判断对象内的属性是否有值为null;
+     * @param o 任意对象
+     * @return boolean
+     */
     private boolean validate(Object o){
         try {
             Class clazz = Class.forName(o.getClass().getName());

@@ -1,80 +1,31 @@
 package normal;
 
-import com.google.common.collect.Comparators;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
+import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
+import org.apache.commons.math3.stat.regression.OLSMultipleLinearRegression;
+import org.apache.commons.math3.stat.regression.SimpleRegression;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import java.nio.file.Path;
+import java.math.BigDecimal;
 import java.time.*;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
 
-
-class fruit implements Comparable<fruit> {
-    int weight;
-    int value;
-
-    public fruit(int weight, int value) {
-        this.weight = weight;
-        this.value = value;
-    }
-
-    public fruit() {
-    }
-
-
-    @Override
-    public int compareTo(fruit o) {
-        return Integer.compare(weight, o.weight);
-    }
-}
-
+import static java.util.stream.Collectors.toList;
 
 public class Hello {
-
-
-    /**
-     * 水果重量问题
-     * @param args
-     */
     public static void main(String[] args) {
-        fruit[] fruits = new fruit[]{new fruit(), new fruit(), new fruit(), new fruit(), new fruit()};
-        Scanner s = new Scanner(System.in);
-        for (int i = 0; i < 5; i++) {
-            fruits[i].weight = s.nextInt();
-        }
-        for (int i = 0; i < 5; i++) {
-            fruits[i].value = s.nextInt();
-        }
-        int maxWeight = s.nextInt();
-        s.close();
 
-        ArrayList<fruit> fruitArrayList = Lists.newArrayList(fruits);
-        fruitArrayList.sort(fruit::compareTo);
+        String s = "fd6507a5-561b-471d-9c59-7d3c7c238c6b?_t=1639559238257";
+        String substring = s.substring(0, s.indexOf('?'));
+        System.out.println(substring);
 
-        int maxValue=-1;
-        while (true){
 
-            int []  count=new int [5];
-            int sum =0;
-            int val=0;
-            while(sum<=maxWeight){
-                for (int i = 0; i < 5; i++) {
-                    sum+=fruitArrayList.get(i).weight;
-                    val+=fruitArrayList.get(i).value;
-                    count[i]++;
-                }
-            }
-            break;
-        }
     }
-
-
-
-
 
 
     @Test
@@ -174,34 +125,148 @@ public class Hello {
 
     }
 
+    public static Double calculate(Collection<Double> params) {
+        if (params == null || params.isEmpty()) {
+            return Double.NaN;
+        }
+
+        DescriptiveStatistics stats = new DescriptiveStatistics();
+        params.stream().filter(param -> param != null && !param.isNaN()).forEach(stats::addValue);
+
+        return stats.getStandardDeviation();
+    }
+
+    public static Double Calculate(List<Double> dailyReturns) {
+
+        List<Double> negativeReturns = dailyReturns.stream().filter(aDouble -> aDouble < 0).collect(toList());
+
+        return calculate(negativeReturns) * Math.sqrt(250);
+
+    }
+
+    public static Double calcAvg(Collection<Double> params) {
+
+        double sum = params.stream().flatMapToDouble(aDouble -> DoubleStream.of(aDouble.doubleValue())).sum();
+        return sum / params.size();
+
+    }
+
+    public static Double Calculate2(List<Double> dailyReturns, List<Double> riskFreeRatios) {
+
+        Double dailyReturnAvg = calcAvg(dailyReturns);
+        Double riskFreeRatioAvg = calcAvg(riskFreeRatios);
+        Double downwardVolatility = Calculate(dailyReturns);
+
+        return ((dailyReturnAvg - riskFreeRatioAvg) / downwardVolatility) * Math.sqrt(250);
+
+    }
+
+
     @Test
     public void test4() {
-        Double a = 200101041d;
-        System.out.println(getQueryCode(a));
+
+        ArrayList<Double> d1 = Lists.newArrayList(0.0095356535166502, -0.024503765627741814, -0.008560201153159142, 0.013729652389883995, -0.006003906484693289, 0.01053518708795309, -0.011259382590651512, -0.016870519146323204, -0.0035750034730881453, 0.0070321448147296906, 0.001995154656469822, 0.003982364200055599, 0.0016999590443447232, 0.000848537078127265, -0.011162923648953438, 0.015147184953093529, -0.017595719546079636, 0.007164349779486656);
+        ArrayList<Double> d2 = Lists.newArrayList(0.00004079155041836202, 0.00004079155041836202, 0.00004079155041836202, 0.00004079155041836202, 0.00004079155041836202, 0.00004079155041836202, 0.00004079155041836202, 0.00004079155041836202, 0.00004079155041836202, 0.00004079155041836202, 0.00004079155041836202, 0.00004079155041836202, 0.00004079155041836202, 0.00004079155041836202, 0.00004079155041836202, 0.00004079155041836202, 0.00004079155041836202, 0.00004079155041836202);
+
+        Double aDouble = Calculate2(d1, d2);
+        OLSMultipleLinearRegression ols = new OLSMultipleLinearRegression();
+
+        double []x={1,3,4,5};
+        double[][]y={{1,2},{3,4},{5,6},{7,8}};
+
+
+        ols.newSampleData(x,y);
+        double[] doubles1 = ols.estimateRegressionParameters();
+
+
+
+        ArrayList<Double> doubles = Lists.newArrayList(1d, 2d, 3d, 4d, 5d);
+        Double aDouble1 = calcAvg(doubles);
+
+        System.out.println(aDouble);
+    }
+
+    public static Double getAlpha(List<Double> fundReturnList, List<Double> marketReturnList, List<Double> riskFreeRate) {
+        SimpleRegression simR = new SimpleRegression();
+        IntStream.range(0, fundReturnList.size()).
+                forEach(s -> simR.addData(marketReturnList.get(s) - riskFreeRate.get(s), fundReturnList.get(s) - riskFreeRate.get(s)));
+        return simR.getIntercept();
     }
 
 
-    public Double sum(List<? extends Number> list) {
-        Double sum = 0d;
-        for (Number number : list) {
-            sum += number.doubleValue();
-        }
-        return sum;
+
+    /**
+     * @Description 组合统计区间内实际贝塔
+     * @Return java.lang.Double
+     */
+    public static Double getBeta(List<Double> fundReturn, List<Double> benchmarkReturn, List<Double> riskFreeRatio) {
+        List<Double> fundSubFreer = getASubB(fundReturn, riskFreeRatio);
+        List<Double> benchSubFreer = getASubB(benchmarkReturn, riskFreeRatio);
+        return getBeta(fundSubFreer, benchSubFreer);
+
     }
 
 
-    @Test
-    public void test5() {
-        Scanner scan = new Scanner(System.in);
-        // 从键盘接收数据
-        // nextLine方式接收字符串
-        System.out.println("nextLine方式接收：");
-        // 判断是否还有输入
-        if (scan.hasNextLine()) {
-            String str2 = scan.nextLine();
-            System.out.println("输入的数据为：" + str2);
+    /**
+     * 计算两组数据的差值
+     *
+     * @param one 日收益率组1
+     * @param two 日收益率组n
+     * @return 返回List
+     */
+    private static List<Double> getASubB(List<Double> one, List<Double> two) {
+
+        return IntStream.range(0, one.size()).boxed().map(i -> one.get(i) - two.get(i)).collect(toList());
+
+    }
+
+
+    /**
+     * 根据两组数据计算beta系数
+     *
+     * @param one
+     * @param two
+     * @return beta系数
+     */
+
+    public static Double getBeta(List<Double> one, List<Double> two) {
+        return getCovariance(one, two) / getSampleVariance(two);
+    }
+
+
+    /**
+     * 根据两组数据计算协方差
+     *
+     * @param one
+     * @param two
+     * @return 协方差
+     */
+
+    public static Double getCovariance(List<Double> one, List<Double> two) {
+        Double covariance = 0.0;
+        Double avg_one = calcAvg(one);
+        Double avg_two = calcAvg(two);
+        for (int i = 0; i < one.size(); i++) {
+            covariance += (one.get(i) - avg_one) * (two.get(i) - avg_two);
         }
-        scan.close();
+        covariance = covariance / (one.size() - 1);
+        return covariance;
+    }
+
+    /**
+     * 根据两组数据计算方差
+     *
+     * @param dates
+     * @return 方差
+     */
+
+    public static Double getSampleVariance(List<Double> dates) {
+        Double avg = calcAvg(dates);
+        double variance = 0.0;
+        for (Double data : dates) {
+            variance += Math.pow((data - avg), 2);
+        }
+        return variance / (dates.size() - 1);
     }
 
 
