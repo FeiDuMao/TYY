@@ -24,7 +24,7 @@ def get_out_data():
     ###便利页码
     base_api2 = f'http://api.fund.eastmoney.com/f10/lsjz?callback=jQuery1830646963446901029_1648692346747&fundCode=164206&pageIndex=1&pageSize=20&startDate=&endDate=&_=1648692346760'
     res2 = requests.get(base_api2,headers=headers)
-    print(res2)
+    print(res2.text)
     # for page in range(1, 61):   # 一共60页，一页50份数据，共有三千左右基金经理
     #     ###构造请求地址
     #     base_api = f'http://api.fund.eastmoney.com/f10/lsjz?callback=jQuery1830646963446901029_1648692346747&fundCode=164206&pageIndex=1&pageSize=20&startDate=&endDate=&_=1648692346760'

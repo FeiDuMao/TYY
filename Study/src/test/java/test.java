@@ -1,6 +1,7 @@
 
 import Entity.ListNode;
 import Entity.Person;
+import Spring.A;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -17,11 +18,16 @@ import pachong.DailyReturnEntity;
 import scala.util.parsing.combinator.testing.Str;
 
 import javax.sql.rowset.spi.SyncResolver;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.time.*;
 import java.util.*;
+import java.util.concurrent.*;
 import java.util.stream.*;
 
 import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
 
 @Slf4j
 public class test {
@@ -97,6 +103,40 @@ public class test {
         System.out.println(localDate);
 
         System.out.println(l);
+
+    }
+
+    @SneakyThrows
+    @Test
+    public void test4() {
+
+        ArrayList<String> list = Lists.newArrayList("1", "2", "3");
+        List<Future<String>>result=new ArrayList<>();
+
+        for (String s : list) {
+            FutureTask<String> stringFutureTask = new FutureTask<String>(() -> {
+                Thread.sleep(500);
+                return s+"aaa";
+            });
+            new Thread(stringFutureTask).start();
+            result.add(stringFutureTask);
+        }
+        for (Future<String> stringFuture : result) {
+            System.out.println(stringFuture.get());
+        }
+
+
+    }
+
+    @SneakyThrows
+    @Test
+    public void test5() {
+
+        NumberFormat nf=new DecimalFormat("0.0001");
+        nf.setRoundingMode(RoundingMode.HALF_UP);
+        Double aDouble = Double.valueOf(nf.format(123.1234124241));
+        System.out.println(aDouble);
+
 
     }
 

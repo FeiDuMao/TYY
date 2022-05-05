@@ -1,7 +1,5 @@
 package normal;
 
-import org.apiguardian.api.API;
-
 import java.util.List;
 import java.util.Map;
 
@@ -12,8 +10,8 @@ import java.util.Map;
  */
 
 public class A {
-    Map<String,String>map;
-    List<String>list;
+    Map<String, String> map;
+    List<String> list;
 
     public Map<String, String> getMap() {
         return map;
