@@ -2,7 +2,9 @@
 import Entity.ListNode;
 import Entity.Person;
 import Spring.A;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
@@ -16,9 +18,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import pachong.DailyReturnEntity;
 import scala.util.parsing.combinator.testing.Str;
+import scala.util.parsing.json.JSON;
 
 import javax.sql.rowset.spi.SyncResolver;
+import java.lang.management.ManagementFactory;
+import java.lang.management.OperatingSystemMXBean;
 import java.math.RoundingMode;
+import java.nio.BufferUnderflowException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.time.*;
@@ -111,12 +117,12 @@ public class test {
     public void test4() {
 
         ArrayList<String> list = Lists.newArrayList("1", "2", "3");
-        List<Future<String>>result=new ArrayList<>();
+        List<Future<String>> result = new ArrayList<>();
 
         for (String s : list) {
             FutureTask<String> stringFutureTask = new FutureTask<String>(() -> {
                 Thread.sleep(500);
-                return s+"aaa";
+                return s + "aaa";
             });
             new Thread(stringFutureTask).start();
             result.add(stringFutureTask);
@@ -131,14 +137,19 @@ public class test {
     @SneakyThrows
     @Test
     public void test5() {
-
-        NumberFormat nf=new DecimalFormat("0.0001");
-        nf.setRoundingMode(RoundingMode.HALF_UP);
-        Double aDouble = Double.valueOf(nf.format(123.1234124241));
-        System.out.println(aDouble);
-
+        UUID u1 = UUID.randomUUID();
+        UUID u2 = UUID.nameUUIDFromBytes("123".getBytes());
+        UUID u3 = UUID.nameUUIDFromBytes("123".getBytes());
+        System.out.println(u1);
+        System.out.println(u1.getMostSignificantBits());
+        System.out.println(u1.getLeastSignificantBits());
+        System.out.println(u1.version());
+        System.out.println(u2);
+        System.out.println(u3);
+        System.out.println(u2.version());
 
     }
+
 
 
 }

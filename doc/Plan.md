@@ -24,4 +24,5 @@ JPA
 代理模式
 json序列化与反序列化
 objectMapper
-
+RunTime.getRunTime();
+OperatingSystemMXBean
