@@ -1,6 +1,8 @@
 package concurrent;
 
 
+import lombok.SneakyThrows;
+
 import java.net.*;
 import java.util.Scanner;
 
@@ -9,13 +11,17 @@ public class T2 {
 
     static DatagramSocket sendSocket;
 
+
     static {
+
         try {
             sendSocket = new DatagramSocket(3333, InetAddress.getLocalHost());
         } catch (SocketException e) {
             e.printStackTrace();
         } catch (UnknownHostException e) {
-            e.printStackTrace();        }
+            e.printStackTrace();
+        }
+
     }
 
     public static void main(String[] args) {

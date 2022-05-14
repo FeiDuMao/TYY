@@ -1,3 +1,15 @@
 
 执行顺序
 Constructor >> @Autowired >> @PostConstruct
+
+
+
+
+
+
+token缺点：一旦发出一个token，就无法撤回。
+
+
+
+
+

@@ -1,5 +1,6 @@
 package pachong;
 
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import scala.util.parsing.combinator.testing.Str;
@@ -13,6 +14,7 @@ import java.net.URLConnection;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -134,21 +136,15 @@ public class httpTest {
 
     @SneakyThrows
     public static void main(String[] args) {
-        for (int i = 0; i < 1000; i++) {
-            StringBuilder s = new StringBuilder(i);
-            while (s.length() <= 6)
-                s.insert(0, 0);
-            System.out.println(s);
-        }
-        String result = getJson("",10L);
-
-
+        long now = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        List<List<DailyReturnEntity>>all=new ArrayList<>();
         ObjectMapper objectMapper = new ObjectMapper();
-        List<DailyReturnEntity> list = objectMapper.readValue(result,
-                objectMapper.getTypeFactory().constructParametricType(List.class, DailyReturnEntity.class));
+        JavaType javaType = objectMapper.getTypeFactory().constructParametricType(List.class, DailyReturnEntity.class);
 
 
-        System.out.println(list);
+
+
+
 
     }
 
@@ -181,6 +177,7 @@ public class httpTest {
         while ((line = in.readLine()) != null) {
             result.append(line);
         }
+        if (result.toString().contains("[]"))return null;
         return result.substring(result.indexOf("FSRQ") - 3, result.indexOf("FundType") - 2).toLowerCase();
 
     }

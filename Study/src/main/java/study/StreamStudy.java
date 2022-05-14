@@ -5,9 +5,12 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
+import lombok.SneakyThrows;
 import org.checkerframework.checker.units.qual.A;
 import org.junit.Test;
 
+import java.io.*;
+import java.nio.CharBuffer;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
@@ -84,5 +87,38 @@ public class StreamStudy {
 
 
     }
+
+
+
+    @Test
+    @SneakyThrows
+    public void test4(){
+        File file=new File("C:\\Users\\s\\1\\2\\a.txt");
+        if (!file.exists()){
+            //创建父目录
+            file.getParentFile().mkdirs();
+            //创建本身
+            file.createNewFile();
+            FileOutputStream out=new FileOutputStream(file);
+            out.write("tyy".getBytes());
+            out.close();
+        }
+
+
+        System.out.println(file.getPath());
+        System.out.println(file.getAbsoluteFile());
+        FileInputStream in=new FileInputStream(file);
+
+        byte[] bytes = in.readAllBytes();
+        System.out.println(new String(bytes));
+
+//
+//        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
+//        System.out.println(bufferedReader.readLine());
+
+    }
+
+
+
 
 }
