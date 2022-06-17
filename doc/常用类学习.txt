@@ -20,6 +20,10 @@ UUID Version 4：随机UUID  java代码为 UUID.randomUUID();
 UUID Version 5：基于名字的UUID（SHA1）
 和版本3的UUID算法类似，只是散列值计算使用SHA1（Secure Hash Algorithm 1）算法。
 
+从UUID的不同版本可以看出:
+Version 1/2适合应用于分布式计算环境下，具有高度的唯一性；
+Version 3/5适合于一定范围内名字唯一，且需要或可能会重复生成UUID的环境下；
+至于Version 4，个人的建议是最好不用（虽然它是最简单最方便的）。
 
 
 

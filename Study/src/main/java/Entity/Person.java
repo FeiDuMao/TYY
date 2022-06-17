@@ -7,11 +7,10 @@ import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 
-@Getter
-@Setter(AccessLevel.PRIVATE)
 @NoArgsConstructor
 @ToString
 @Builder
+@Data
 public class Person{
     private String name;
     private Integer age;

@@ -21,6 +21,28 @@ import java.util.stream.Stream;
 public class StreamStudy {
 
 
+    /**
+     * flatMap 返回的是一个stream流，合并Map时
+     */
+    @Test
+    public void flatMapStudy() {
+        Map<String, Map<String, String>> map = Map.of("m1", Map.of("k1", "v1", "k2", "v2"), "m2", Map.of("k3", "v3", "k4", "v4"));
+        Map<String, String> result = map.entrySet().stream()
+                .flatMap(stringMapEntry -> stringMapEntry.getValue().entrySet().stream())
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+        result.forEach((key, value) -> System.out.println(key + value));
+
+
+        ArrayList<Map<String, String>> maps = Lists.newArrayList(Map.of("k1", "v1", "k2", "v2"), Map.of("k3", "v3", "k4", "v4"));
+        Map<String, String> result2 = maps.stream()
+                .flatMap(e -> e.entrySet().stream())
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+        result2.forEach((key, value) -> System.out.println(key + value));
+
+    }
+
     @Test
     public void test() {
 
@@ -78,12 +100,6 @@ public class StreamStudy {
 
     @Test
     public void test3() {
-
-
-        final List<String> strings;
-        strings=new ArrayList<>();
-        strings.add("111");
-        strings.remove("111");
 
 
     }

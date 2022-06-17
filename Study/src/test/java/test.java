@@ -1,15 +1,6 @@
-
-import Entity.ListNode;
 import Entity.Person;
-import Spring.A;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -18,25 +9,23 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import pachong.DailyReturnEntity;
 import scala.util.parsing.combinator.testing.Str;
-import scala.util.parsing.json.JSON;
 
-import javax.sql.rowset.spi.SyncResolver;
-import java.lang.management.ManagementFactory;
-import java.lang.management.OperatingSystemMXBean;
-import java.math.RoundingMode;
-import java.nio.BufferUnderflowException;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.time.*;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.stream.*;
-
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.toList;
+import java.util.concurrent.Future;
+import java.util.concurrent.FutureTask;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Slf4j
 public class test {
+
+
+    //person的指向不能被改变，但是内部的熟悉可以改变
+    private final Person person=new Person("tyy",1);
 
 
     //0 1 1 2 3 5 8
@@ -55,28 +44,9 @@ public class test {
 
     @Test
     public void test() {
-        String[] arr = new String[]{"a", "tb", "tc", "d"};
-        Map<Integer, String> map = Maps.newHashMap();
-        Set<String> set = Sets.newHashSet("a", "b", "c");
-        ArrayList<String> list = Lists.newArrayList("a", "b", "c");
-
-        //set.stream().filter(str->str.equals("a")).forEach(System.out::println);
-
-
-        Map<String, Integer> collect = list.stream().collect(Collectors.toMap(k -> k, k -> 0));
-
-        List<String> a = list.stream().filter(x -> x.startsWith("a")).collect(Collectors.toList());
-        a.forEach(System.out::println);
-
-        collect.forEach((key, val) -> {
-            System.out.println(key + ": " + val);
-        });
-
-        //Stream<String>stream=Stream.of(arr);
-        Stream<String> stream = Arrays.stream(arr);
-
-
-        stream.filter(str -> str.startsWith("t")).forEach(System.out::println);
+        String name =person.getName()+"11";
+        person.setName(name);
+        Map<String, Integer> map = Map.of("k1", 1, "k2", 2);
 
 
     }
@@ -137,16 +107,8 @@ public class test {
     @SneakyThrows
     @Test
     public void test5() {
-        UUID u1 = UUID.randomUUID();
-        UUID u2 = UUID.nameUUIDFromBytes("123".getBytes());
-        UUID u3 = UUID.nameUUIDFromBytes("123".getBytes());
-        System.out.println(u1);
-        System.out.println(u1.getMostSignificantBits());
-        System.out.println(u1.getLeastSignificantBits());
-        System.out.println(u1.version());
-        System.out.println(u2);
-        System.out.println(u3);
-        System.out.println(u2.version());
+        System.out.println(Runtime.getRuntime().availableProcessors());
+
 
     }
 
