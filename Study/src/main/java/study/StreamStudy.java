@@ -44,6 +44,20 @@ public class StreamStudy {
     }
 
     @Test
+    public void toList() {
+
+        List<Double> doubles = List.of(1d, 2d, 3d, 4d);
+        //生成的List可变
+        List<Double> collect1 = doubles.stream().map(d -> ++d).collect(Collectors.toList());
+        //生成的List不可变
+        List<Double> collect2 = doubles.stream().map(d -> ++d).toList();
+        collect1.add(5d);
+//        collect2.add(5d);
+        collect1.forEach(System.out::println);
+        collect2.forEach(System.out::println);
+    }
+
+    @Test
     public void test() {
 
         ArrayList<Double> doubles = Lists.newArrayList(1.1, 2.2, 3.3, 4.4);
@@ -59,7 +73,7 @@ public class StreamStudy {
     @Test
     public void test2() {
 
-        Double a=null;
+        Double a = null;
 
         Map<String, Double> result = new HashMap<>();
         result.put("1", 1.1);
@@ -101,21 +115,19 @@ public class StreamStudy {
     @Test
     public void test3() {
 
-
     }
-
 
 
     @Test
     @SneakyThrows
-    public void test4(){
-        File file=new File("C:\\Users\\s\\1\\2\\a.txt");
-        if (!file.exists()){
+    public void test4() {
+        File file = new File("C:\\Users\\s\\1\\2\\a.txt");
+        if (!file.exists()) {
             //创建父目录
             file.getParentFile().mkdirs();
             //创建本身
             file.createNewFile();
-            FileOutputStream out=new FileOutputStream(file);
+            FileOutputStream out = new FileOutputStream(file);
             out.write("tyy".getBytes());
             out.close();
         }
@@ -123,7 +135,7 @@ public class StreamStudy {
 
         System.out.println(file.getPath());
         System.out.println(file.getAbsoluteFile());
-        FileInputStream in=new FileInputStream(file);
+        FileInputStream in = new FileInputStream(file);
 
         byte[] bytes = in.readAllBytes();
         System.out.println(new String(bytes));
@@ -133,8 +145,6 @@ public class StreamStudy {
 //        System.out.println(bufferedReader.readLine());
 
     }
-
-
 
 
 }
