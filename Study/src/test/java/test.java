@@ -7,13 +7,17 @@ import com.google.common.collect.Sets;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.springframework.util.ObjectUtils;
 import pachong.DailyReturnEntity;
 import scala.util.parsing.combinator.testing.Str;
 
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.*;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
@@ -72,13 +76,9 @@ public class test {
     @Test
     public void test3() {
 
-        long l = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli();
-
-        LocalDateTime localDate = LocalDateTime.ofInstant(Instant.ofEpochMilli(1648692346760L), ZoneId.systemDefault());
-
-        System.out.println(localDate);
-
-        System.out.println(l);
+        String s="tyy is %s,%c";
+        String result = String.format(s, "aaa");
+        System.out.println(result);
 
     }
 
@@ -107,10 +107,45 @@ public class test {
     @SneakyThrows
     @Test
     public void test5() {
-        System.out.println(Runtime.getRuntime().availableProcessors());
+
+        List<String> list = List.of("1", "2", "3");
+        String result = String.join(",", "12","123","aaa");
+        System.out.println(result);
 
 
     }
+
+    @SneakyThrows
+    @Test
+    public void test6() {
+
+
+//        LocalDateTime parse = LocalDateTime.parse("2022-06-30 17:16:32");
+        LocalDateTime parse = LocalDateTime.now();
+        String result = parse.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
+        System.out.println(result);
+        System.out.println(parse);
+
+
+    }
+
+
+
+
+    private void throwExceptionWhenArgsContainsNull(Object ...args){
+        for (Object arg : args) {
+            if (ObjectUtils.isEmpty(arg))
+                throw new IllegalArgumentException();
+        }
+    }
+
+
+
+
+
+
+
+
 
 
 
