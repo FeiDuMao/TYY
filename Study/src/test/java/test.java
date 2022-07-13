@@ -29,7 +29,7 @@ public class test {
 
 
     //person的指向不能被改变，但是内部的熟悉可以改变
-    private final Person person=new Person("tyy",1);
+    private final Person person = new Person("tyy", 1);
 
 
     //0 1 1 2 3 5 8
@@ -48,7 +48,7 @@ public class test {
 
     @Test
     public void test() {
-        String name =person.getName()+"11";
+        String name = person.getName() + "11";
         person.setName(name);
         Map<String, Integer> map = Map.of("k1", 1, "k2", 2);
 
@@ -76,7 +76,7 @@ public class test {
     @Test
     public void test3() {
 
-        String s="tyy is %s,%c";
+        String s = "tyy is %s,%c";
         String result = String.format(s, "aaa");
         System.out.println(result);
 
@@ -109,8 +109,13 @@ public class test {
     public void test5() {
 
         List<String> list = List.of("1", "2", "3");
-        String result = String.join(",", "12","123","aaa");
-        System.out.println(result);
+        String[] result2 = new String[list.size()];
+        String[] result1 = list.toArray(new String[]{});
+        String[] result3 = list.toArray(result2);
+
+        System.out.println(result1);
+        System.out.println(result2);
+        System.out.println(result3);
 
 
     }
@@ -119,34 +124,19 @@ public class test {
     @Test
     public void test6() {
 
-
-//        LocalDateTime parse = LocalDateTime.parse("2022-06-30 17:16:32");
-        LocalDateTime parse = LocalDateTime.now();
-        String result = parse.format(DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss"));
-        System.out.println(result);
-        System.out.println(parse);
-
+        Double d=Double.NaN;
+        System.out.println(Double.NaN == d);
+        System.out.println(d.isNaN());
 
     }
 
 
-
-
-    private void throwExceptionWhenArgsContainsNull(Object ...args){
+    private void throwExceptionWhenArgsContainsNull(Object... args) {
         for (Object arg : args) {
             if (ObjectUtils.isEmpty(arg))
                 throw new IllegalArgumentException();
         }
     }
-
-
-
-
-
-
-
-
-
 
 
 }

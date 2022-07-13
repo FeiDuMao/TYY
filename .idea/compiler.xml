@@ -14,7 +14,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="auth" target="1.8" />
+      <module name="auth" target="17" />
       <module name="AUTH" target="17" />
       <module name="jwt" target="17" />
       <module name="SBPT" target="17" />
