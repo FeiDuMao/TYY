@@ -8,16 +8,16 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TreeNode {
+public class DoubleTreeNode {
     public int val = 0;
-    public TreeNode left = null;
-    public TreeNode right = null;
+    public DoubleTreeNode left = null;
+    public DoubleTreeNode right = null;
 
-    public void setTreeNode(TreeNode left,TreeNode right){
+    public void setTreeNode(DoubleTreeNode left, DoubleTreeNode right){
         this.left=left;
         this.right=right;
     }
-    public TreeNode(int val){
+    public DoubleTreeNode(int val){
         this.val=val;
     }
 }

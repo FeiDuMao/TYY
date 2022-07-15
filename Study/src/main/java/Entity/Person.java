@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @Builder
 @Data
@@ -27,12 +28,6 @@ public class Person{
         this.age = age;
     }
 
-    public Person(String name, Integer age, Integer id, LocalDate birth) {
-        this.name = name;
-        this.age = age;
-        this.id = id;
-        this.birth = birth;
-    }
 
     public void print(Person person){
         System.out.println(person.getName());

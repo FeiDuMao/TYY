@@ -170,6 +170,12 @@ DDD:
 业务逻辑主要集中在 Service 层。所以，Repository 层和 Controller 层继续沿用贫血模型的设计思路是没有问题的。
 
 
+四大基础函数式接口：
+ * 消费型接口：consumer<T>：  void accept(T t)   接收T类型，执行操作，没有返回值
+ * 供给型接口：supplier<T>：  T get()            没有参数， 执行操作，返回T类型
+ * 函数型接口：function<T,R>：R apply(T t)       接收T类型，执行操作，返回R类型
+ * 断定型接口：predicate<T>： boolean test(T t)  接收T类型，执行操作，返回boolean类型
+
 
 
 
