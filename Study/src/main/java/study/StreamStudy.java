@@ -43,6 +43,21 @@ public class StreamStudy {
 
     }
 
+    /**
+     * sum max n value
+     *
+     * @param values
+     * @param countInt
+     * @return
+     */
+    public static Double factorSumList(List<Double> values, int countInt) {
+        return values
+                .stream()
+                .sorted(Comparator.reverseOrder())
+                .limit(countInt)
+                .mapToDouble(value -> value).sum();
+    }
+
     @Test
     public void toList() {
 

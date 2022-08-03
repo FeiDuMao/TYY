@@ -1,4 +1,5 @@
 import Entity.Person;
+import Entity.SameHand;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.google.common.collect.Lists;
@@ -11,6 +12,9 @@ import org.springframework.util.ObjectUtils;
 import pachong.DailyReturnEntity;
 import scala.util.parsing.combinator.testing.Str;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.*;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -21,7 +25,10 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.util.*;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
 
 @Slf4j
@@ -139,4 +146,56 @@ public class test {
     }
 
 
+
+    @SneakyThrows
+    @Test
+    public void test7() {
+
+        HashMap<String, List<String>> map = new HashMap<>();
+        map.put("1",List.of("1"));
+        map.put("2",null);
+        map.put(null,List.of());
+        map.forEach((k,v)->{
+            if (ObjectUtils.isEmpty(v))
+                System.out.println(k+"is empty");
+
+            if (ObjectUtils.isEmpty(k))
+                System.out.println(k+"is empty");
+        });
+
+
+    }
+
+    @SneakyThrows
+    @Test
+    public void test8() {
+        System.out.println(SameHand.parse("SAME").isPresent());
+        System.out.println(SameHand.parse("same").isPresent());
+    }
+
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

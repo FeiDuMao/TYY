@@ -1,7 +1,6 @@
 package com.tyy.service;
 
-import lombok.RequiredArgsConstructor;
-import org.aspectj.lang.annotation.Aspect;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -9,12 +8,19 @@ import org.springframework.stereotype.Component;
  * @Created by taoyuanyuan
  */
 @Component
-@RequiredArgsConstructor
 public class Test {
 
+    private String id;
+
+    public Test(@Value("${asset.factor.id}")
+                        String id) {
+        this.id = id;
+    }
 
     public void doSomeThing() {
+
         System.out.println("OK");
+
     }
 
 

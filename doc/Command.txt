@@ -13,6 +13,8 @@ tar -xzvf 源文件.tar.gz	[-C dir_name]	//将源文件解压到当前目录下 
 
 find / -name "*.conf"	//找到根目录下，以.conf结尾的文件
 
+du -h //查看文件大小
+
 windows运行环境搭建
 **须在管理员模式运行
 启动redis：redis-server（有时可能需要指定配置文件：进入redis根目录，redis-server redis.windos.conf ）
