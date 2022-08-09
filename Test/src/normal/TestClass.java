@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @Classname TestClass
@@ -227,16 +228,41 @@ public class TestClass {
         }
     }
 
+    //注意如果存在null的value，则报错
+    public static <K, V> Map<V, List<K>> groupKeyByValue(Map<K, V> originMap) {
+        return originMap.entrySet().stream()
+                .collect(Collectors.groupingBy(Map.Entry::getValue,
+                        Collectors.mapping(Map.Entry::getKey, Collectors.toList())));
+    }
+
 
     @Test
     public void test4() {
 
-        int[] arr = new int[]{2, 1, 5, 4, 2, 8};
-
-
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("1", 1);
+        map.put("2", 1);
+        map.put(null, 1);
+        map.put("3", null);
+        map.put("4", null);
+        if (!map.containsValue(null)) {
+            Map<Integer, List<String>> integerListMap = groupKeyByValue(map);
+            integerListMap.forEach((k, v) -> {
+                System.out.println(k);
+            });
+        }
 
 
     }
+
+    @Test
+    public void test5() {
+
+
+        System.out.println(Stream.of("1", "2", "3").filter(s -> !"3".equals(s)).count());
+
+    }
+
 
 
 }

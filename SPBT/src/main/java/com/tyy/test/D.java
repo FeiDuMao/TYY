@@ -1,7 +1,6 @@
 package com.tyy.test;
 
 import lombok.AllArgsConstructor;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,13 +9,13 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @AllArgsConstructor
-public class C {
+public class D {
 
 
-    D d;
+    A a;
 
     public void print(){
-        System.out.println("cc");
+        System.out.println("ddd");
     }
 
 
