@@ -1,12 +1,15 @@
 package normal;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.text.DecimalFormat;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -258,11 +261,27 @@ public class TestClass {
     @Test
     public void test5() {
 
-
-        System.out.println(Stream.of("1", "2", "3").filter(s -> !"3".equals(s)).count());
+        String s = "a  d c";
+        String s2 = "   a  d c   ";
+        String s3 = "       ";
+        System.out.println(s.length() + ": " + s.trim().length());
+        System.out.println(s2.length() + ": " + s2.trim().length());
+        System.out.println(s3.length() + ": " + s3.trim().length());
 
     }
 
+    @Test
+    public void tes44() {
+
+        List<String> list = List.of("a");
+        String join = String.join(";", list);
+        String[] split = join.split(";");
+        List<String> strings = Arrays.stream(split).toList();
+        for (String s : split) {
+            System.out.println(s);
+        }
+
+    }
 
 
 }

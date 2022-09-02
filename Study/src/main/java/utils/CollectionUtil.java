@@ -1,8 +1,6 @@
 package utils;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Date 2022/8/9 18:33
@@ -34,8 +32,26 @@ public class CollectionUtil {
     }
 
 
-    public static <T> Collection<T> unio(Collection<T> collection) {
+    public static <T> Collection<T> union(Collection<T>... collections) {
+        if ((collections.length <= 1)) {
+            return collections[0];
+        } else {
+
+            for (Collection<T> collection : collections) {
+
+            }
+        }
+
         return null;
+
+    }
+
+
+    public <T> Collection<T> union(Collection<T> c1, Collection<T> c2) {
+
+        List<T> l1 = c1.stream().toList();
+        l1.addAll(c2);
+        return l1;
     }
 
 

@@ -22,12 +22,19 @@
 重载：参数类型、个数、顺序至少有一个不同（不能重载只有返回值不同的方法）
 
 
+1bit = 8位
+8bit = 一个字节
+16bit = 一个字
 
 基本数据类型：
-	整   型：byte, short, int, long
-	字符型：char
-	浮点型：float, double
-	布尔型：boolean
+	整   型：byte(1bit), short(2bit), int(4bit), long(8bit)
+	字符型：char（2bit）
+	浮点型：float(4bit), double(8bit)
+	布尔型：boolean(4bit)
+
+为什么同样是8bit，double表示的范围比long要大？
+因为：long是整型,最大值为(2^63)-1，而double是浮点型(值越大，精度越低)，存储数据的方式为n*(2^m)，它的最大值为2^1024
+
 
 对象在内存中的存储布局：markword（对象头）+类型指针+实例数据+对齐
 
