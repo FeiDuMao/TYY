@@ -1,5 +1,6 @@
 package com.tyy.adapter.multiTypeSerilization;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
@@ -12,7 +13,8 @@ public class RequestA extends BaseRequest {
 
     List<String> codes;
 
-    public RequestA(String date, @JsonProperty("codes") List<String> codes) {
+    @JsonCreator
+    public RequestA(String date, List<String> codes) {
         super(date);
         this.codes = codes;
     }

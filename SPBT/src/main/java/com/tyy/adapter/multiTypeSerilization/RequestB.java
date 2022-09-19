@@ -1,5 +1,6 @@
 package com.tyy.adapter.multiTypeSerilization;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -10,7 +11,8 @@ public class RequestB extends BaseRequest {
 
     String code;
 
-    public RequestB(String date, @JsonProperty("code") String code) {
+    @JsonCreator
+    public RequestB(String date, String code) {
         super(date);
         this.code = code;
     }
