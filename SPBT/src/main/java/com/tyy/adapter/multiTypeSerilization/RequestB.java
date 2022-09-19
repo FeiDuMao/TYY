@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class RequestB extends BaseRequest {
 
+    @JsonProperty
     String code;
 
-    @JsonCreator
     public RequestB(String date, String code) {
         super(date);
         this.code = code;

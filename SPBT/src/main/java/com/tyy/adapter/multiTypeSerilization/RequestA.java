@@ -11,9 +11,9 @@ import java.util.List;
  */
 public class RequestA extends BaseRequest {
 
+    @JsonProperty
     List<String> codes;
 
-    @JsonCreator
     public RequestA(String date, List<String> codes) {
         super(date);
         this.codes = codes;
