@@ -1,5 +1,6 @@
 package com.tyy.adapter.controller;
 
+import com.tyy.service.RespView;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,5 +29,10 @@ public class ParamTestController {
         return "ok";
     }
 
+    @PostMapping("/resp")
+    public RespTest respTest(@RequestBody ReqTest reqTest){
+        System.out.println(reqTest);
+        return new RespTest("tyy","123");
+    }
 
 }
