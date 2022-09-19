@@ -131,6 +131,7 @@ public class test {
     @Test
     public void test6() {
 
+
         Double d=Double.NaN;
         System.out.println(Double.NaN == d);
         System.out.println(d.isNaN());

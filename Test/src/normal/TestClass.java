@@ -1,10 +1,14 @@
 package normal;
 
+import Entity.Person;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.*;
@@ -259,16 +263,39 @@ public class TestClass {
     }
 
     @Test
-    public void test5() {
+    public void test5() throws IllegalAccessException {
 
-        String s = "a  d c";
-        String s2 = "   a  d c   ";
-        String s3 = "       ";
-        System.out.println(s.length() + ": " + s.trim().length());
-        System.out.println(s2.length() + ": " + s2.trim().length());
-        System.out.println(s3.length() + ": " + s3.trim().length());
+
+        Person p=new Person("tyy",10);
 
     }
+
+
+
+    public void validate(Object o) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException, InstantiationException {
+
+        Class<?> clazz = o.getClass();
+        for (Field declaredField : clazz.getDeclaredFields()) {
+            declaredField.setAccessible(true);
+            System.out.println(declaredField.getName());
+            Class<?> type = declaredField.getType();
+            System.out.println(type.getName());
+            Object result = declaredField.get(o);
+            if (result == null){
+
+            }
+            System.out.println(result);
+        }
+
+        for (Method declaredMethod : clazz.getDeclaredMethods()) {
+            declaredMethod.setAccessible(true);
+            for (Class<?> parameterType : declaredMethod.getParameterTypes()) {
+                Object o1 = parameterType.getConstructor().newInstance();
+            }
+        }
+
+    }
+
 
     @Test
     public void tes44() {
