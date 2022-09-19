@@ -2,6 +2,7 @@ package com.tyy;
 
 import com.tyy.common.util.ObjectUtil;
 import com.tyy.jpa.Person;
+import com.tyy.jpa.TestEntity;
 import org.junit.jupiter.api.Test;
 import org.reactivestreams.Publisher;
 import org.springframework.boot.context.properties.PropertyMapper;
@@ -41,7 +42,9 @@ public class TestClass {
 
 
         System.out.println(tyy);
-        ObjectUtil.validateParam(tyy);
+
+        TestEntity testEntity = new TestEntity();
+        testEntity.setName("asd");
 
     }
 

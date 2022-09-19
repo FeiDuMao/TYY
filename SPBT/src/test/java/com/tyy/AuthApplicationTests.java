@@ -1,6 +1,5 @@
 package com.tyy;
 
-import com.tyy.test.ATest;
 import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

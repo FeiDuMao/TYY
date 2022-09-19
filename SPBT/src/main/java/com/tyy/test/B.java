@@ -10,15 +10,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class B {
 
-//    C c;
-//
-//    public B(C c) {
-//        this.c = c;
-//    }
+    C c;
 
-    A a;
-
-    public B(@Lazy A a) {
-        this.a = a;
+    public B(C c) {
+        this.c = c;
     }
 }
