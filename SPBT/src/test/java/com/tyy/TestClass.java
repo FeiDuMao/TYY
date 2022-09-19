@@ -1,5 +1,7 @@
 package com.tyy;
 
+import com.tyy.common.util.ObjectUtil;
+import com.tyy.jpa.Person;
 import org.junit.jupiter.api.Test;
 import org.reactivestreams.Publisher;
 import org.springframework.boot.context.properties.PropertyMapper;
@@ -27,6 +29,19 @@ public class TestClass {
         List<String> result = list.stream().filter(s -> s.equals("1")).map(String::toUpperCase).toList();
         System.out.println(result.isEmpty());
 
+
+    }
+
+    @Test
+    public void test2(){
+        Person tyy = Person.builder()
+                .name("tyy")
+                .age(12)
+                .build();
+
+
+        System.out.println(tyy);
+        ObjectUtil.validateParam(tyy);
 
     }
 

@@ -1,4 +1,4 @@
-package com.tyy.service;
+package com.tyy.application.service;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
