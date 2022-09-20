@@ -1,3 +1,23 @@
+#spring:
+#  datasource:
+#    hikari:
+#      jdbc-url: jdbc:mysql://localhost:3306/study?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+#      username: root
+#      password: Beifa888
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: Beifa888
+    url: jdbc:mysql://localhost:3306/study?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+
+
+
+
 asset:
   factor:
     id: 123

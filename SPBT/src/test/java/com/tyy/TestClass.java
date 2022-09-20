@@ -25,6 +25,10 @@ public class TestClass {
     @Test
     public void test(){
 
+        Iterable<String>strings=null;
+
+
+
 
         List<String> list = List.of("2","3");
         List<String> result = list.stream().filter(s -> s.equals("1")).map(String::toUpperCase).toList();

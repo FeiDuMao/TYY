@@ -1,4 +1,4 @@
-package com.tyy.adapter.controller;
+package com.tyy.adapter.controller.paramTest;
 
 import lombok.*;
 

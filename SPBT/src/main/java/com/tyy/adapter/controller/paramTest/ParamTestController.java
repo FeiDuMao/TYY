@@ -1,4 +1,4 @@
-package com.tyy.adapter.controller;
+package com.tyy.adapter.controller.paramTest;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
