@@ -1,5 +1,7 @@
 package com.tyy.jpa;
 
+import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
@@ -16,6 +18,7 @@ import java.time.LocalDate;
  */
 @Table(name = "fund_bond_position")//当entity与数据库表名不一致时使用此注解
 @Entity
+@Getter
 @IdClass(FundBondPositionEntity.Key.class)
 @NoArgsConstructor//一定要有一个无参构造器
 public class FundBondPositionEntity {

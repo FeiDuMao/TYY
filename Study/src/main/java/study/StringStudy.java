@@ -1,10 +1,15 @@
 package study;
 
 import org.junit.Test;
+import scala.util.parsing.combinator.testing.Str;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.*;
+import java.util.stream.Stream;
 
 public class StringStudy {
 
@@ -231,6 +236,99 @@ public class StringStudy {
         System.out.println(s.indexOf("is"));
 
     }
+
+
+    public static Double getResult(String str) {
+
+        // 递归头
+        if (str.isEmpty() || str.matches("-?\\d+(\\.\\d+)")) {
+            return str.isEmpty() ? 0 : Double.parseDouble(str);
+        }
+
+        //递归体
+        if (str.contains(")")) {
+            // 最后一个左括号
+            int lIndex = str.lastIndexOf("(");
+            // 对于的右括号
+            int rIndex = str.indexOf(")", lIndex);
+            return getResult(str.substring(0, lIndex) + getResult(str.substring(lIndex + 1, rIndex)) + str.substring(rIndex + 1));
+        }
+        if (str.contains("+")) {
+            int index = str.lastIndexOf("+");
+            return getResult(str.substring(0, index)) + getResult(str.substring(index + 1));
+        }
+        if (str.contains("-")) {
+            int index = str.lastIndexOf("-");
+            return getResult(str.substring(0, index)) - getResult(str.substring(index + 1));
+        }
+        if (str.contains("*")) {
+            int index = str.lastIndexOf("*");
+            return getResult(str.substring(0, index)) * getResult(str.substring(index + 1));
+        }
+        if (str.contains("/")) {
+            int index = str.lastIndexOf("/");
+            return getResult(str.substring(0, index)) / getResult(str.substring(index + 1));
+        }
+
+        // 出错
+        return Double.NaN;
+    }
+
+    /**
+     * 正则表达式
+     */
+
+    @Test
+    public void regexStudy() throws ScriptException {
+
+        String str = "0.8*(0.1*(0.1*1+0.9)+0.9*(0.3+0.7*1))+0.2";
+
+        System.out.println(getResult(str));
+
+
+    }
+
+
+    private void validateParam(String str) {
+        if (str.contains("(")) {
+            String next = str.substring(str.lastIndexOf("(") + 1, str.indexOf(")"));
+            validateParam(next);
+            validateParam(str.replace("(" + next + ")", "1"));
+        }
+        System.out.println(getResult(str));
+
+    }
+
+    private static boolean validateCoefficientSum(String str) {
+        if (!str.contains("(")) {
+            return getResult(str) == 1;
+        }
+        String next = str.substring(str.lastIndexOf("(") + 1, str.indexOf(")"));
+
+        return validateCoefficientSum(next) && validateCoefficientSum(
+                str.substring(0, str.indexOf(next) - 2) + str.substring(str.indexOf(next) + next.length() + 1)
+        );
+
+    }
+
+
+
+
+    @Test
+    public void test55() throws ScriptException {
+
+        Double d1=0.99999;
+        Double d2=1.00001d;
+
+
+        System.out.println(NumberFormat.getInstance().format(d1));
+        System.out.println(NumberFormat.getInstance().format(d2));
+
+
+    }
+
+
+
 
 
 }
