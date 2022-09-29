@@ -13,7 +13,17 @@ tar -xzvf 源文件.tar.gz	[-C dir_name]	//将源文件解压到当前目录下 
 
 find / -name "*.conf"	//找到根目录下，以.conf结尾的文件
 
-du -h //查看文件大小
+du -h -d [n]//查看n层文件大小
+
+history 查看命令使用历史记录
+
+grep 搜索命令执行的结果
+
+wc -l 查看结果的行数
+
+ps -ef 查看所有进程
+
+
 
 windows运行环境搭建
 **须在管理员模式运行

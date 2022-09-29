@@ -59,9 +59,11 @@ public class TestClass {
 
     @Test
     public void test4(){
-        List<Double> values = List.of(1d, 2d, 3d, Double.NaN);
 
-        System.out.println(values.contains(Double.NaN));
+        List<Integer> list = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> list1 = list.stream().skip(2).toList();
+        System.out.println(list);
+        System.out.println(list1);
 
 
     }
