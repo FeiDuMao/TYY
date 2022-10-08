@@ -1,0 +1,23 @@
+syntax = 'proto3';
+
+
+option java_package = "com.tyy.grpc";
+option java_outer_classname = "DataProto";
+
+package data;
+
+service DataService {
+  rpc queryDataByDate(queryDateReq) returns (queryResp);
+}
+
+message queryDateReq{
+  optional string date = 1 ;
+  optional int64 val = 2;
+}
+
+
+message queryResp {
+  string result = 1;
+  int64  val = 2;
+  map<string, double>map = 3;
+}

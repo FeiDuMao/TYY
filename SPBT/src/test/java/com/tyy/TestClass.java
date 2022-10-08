@@ -4,6 +4,7 @@ import com.tyy.jpa.Person;
 import com.tyy.jpa.TestEntity;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 import java.util.Properties;
@@ -60,11 +61,7 @@ public class TestClass {
     @Test
     public void test4(){
 
-        List<Integer> list = List.of(1, 2, 3, 4, 5, 6);
-        List<Integer> list1 = list.stream().skip(2).toList();
-        System.out.println(list);
-        System.out.println(list1);
-
+        Map<String, Integer> result = Map.of("1",2,null, 123);
 
     }
 

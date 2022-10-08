@@ -12,7 +12,7 @@ import java.util.List;
 @ToString
 @Builder
 @Data
-public class Person{
+public class Person implements Cloneable{
     private String name;
     private Integer age;
     private Integer id;
@@ -43,5 +43,14 @@ public class Person{
     }
     public static int compareByDate(Person o1, Person o2) {
        return o1.getBirth().compareTo(o2.getBirth());
+    }
+
+    @Override
+    public Person clone() {
+        try {
+            return (Person) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
