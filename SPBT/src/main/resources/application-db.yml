@@ -1,0 +1,51 @@
+#
+#
+#spring:
+#  datasource:
+#    type: com.zaxxer.hikari.HikariDataSource
+#    hikari:
+#      username: root
+#      password: Beifa888
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#
+#      minimum-idle: 1
+#      maximum-pool-size: 10
+#      pool-name: bosPoolName
+#      max-lifetime: 180000000
+#      jdbc-url: jdbc:mysql://localhost:3306/study?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${mysql.username}
+    password: ${mysql.password}
+    url: jdbc:mysql://${mysql.host}:${mysql.port}/${database}?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+mysql:
+  host: localhost
+  port: 3306
+  database: study
+  username: root
+  password: beifa888
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev1
+
+mysql:
+  host: 192.168.0.182
+  port: 3306
+  database: htsc
+  username: root
+  password: beifa888

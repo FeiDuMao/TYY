@@ -4,10 +4,7 @@ import com.tyy.jpa.Person;
 import com.tyy.jpa.TestEntity;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * @Date 2022/9/9 16:44
@@ -61,7 +58,14 @@ public class TestClass {
     @Test
     public void test4(){
 
-        Map<String, Integer> result = Map.of("1",2,null, 123);
+
+        List<Double> doubles = List.of(1d, 2d, Double.NaN);
+        Double aDouble = doubles.stream().min(Double::compareTo).get();
+        System.out.println(aDouble);
+
+
+        Random random = new Random();
+
 
     }
 

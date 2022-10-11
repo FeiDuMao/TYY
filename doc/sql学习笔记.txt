@@ -23,6 +23,9 @@ on table_A.col=table_B.col
 set table_A.col=table_B.col
 
 
+//  insert into huatai_stock.trading_day(trading_date) (select trading_date from htsc.trading_day)
+
+
 
 批量更改可以用update XXX set XXX=XXX where ...
 

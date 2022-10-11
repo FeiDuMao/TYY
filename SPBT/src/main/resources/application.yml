@@ -1,29 +1,7 @@
-#
-#
-#spring:
-#  datasource:
-#    type: com.zaxxer.hikari.HikariDataSource
-#    hikari:
-#      username: root
-#      password: Beifa888
-#      driver-class-name: com.mysql.cj.jdbc.Driver
-#
-#      minimum-idle: 1
-#      maximum-pool-size: 10
-#      pool-name: bosPoolName
-#      max-lifetime: 180000000
-#      jdbc-url: jdbc:mysql://localhost:3306/study?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-
-
-
 spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: Beifa888
-    url: jdbc:mysql://localhost:3306/study?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-
-
+  profiles:
+    include: db
+    active: local
 
 
 asset:
