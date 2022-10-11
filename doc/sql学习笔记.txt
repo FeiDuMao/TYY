@@ -22,9 +22,13 @@ update table_A join table_B
 on table_A.col=table_B.col
 set table_A.col=table_B.col
 
+//批量插入数据
+insert into fund_bond_position(fund_code, fund_name, bond_code, bond_name, percent, end_date)
+select (xxx as fund_code, xxx as fund_name...... )
 
-//  insert into huatai_stock.trading_day(trading_date) (select trading_date from htsc.trading_day)
-
+insert into fund_bond_position(fund_code, fund_name, bond_code, bond_name, percent, end_date)
+values ('test', 'test', 'test3', 'test', '0.1', '2021-12-31'),
+       ('test', 'test', 'test3', 'test', '0.1', '2021-12-31')
 
 
 批量更改可以用update XXX set XXX=XXX where ...
