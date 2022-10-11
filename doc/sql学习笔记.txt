@@ -30,6 +30,10 @@ insert into fund_bond_position(fund_code, fund_name, bond_code, bond_name, perce
 values ('test', 'test', 'test3', 'test', '0.1', '2021-12-31'),
        ('test', 'test', 'test3', 'test', '0.1', '2021-12-31')
 
+//插入数据时的冲突处理
+insert into A(code, val)
+values ('1', '1.0')
+on duplicate key update A.val=values(val);
 
 批量更改可以用update XXX set XXX=XXX where ...
 
