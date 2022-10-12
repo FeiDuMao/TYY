@@ -16,6 +16,12 @@ alter table employee  add constraint ck_salary check(salary>0 and salary<10000)
 
 limit m,n	//显示从第m行（不包括第m行）开始的后n行记录
 
+//设置事务隔离级别
+SET [SESSION | GLOBAL] TRANSACTION ISOLATION LEVEL {READ UNCOMMITTED | READ COMMITTED | REPEATABLE READ | SERIALIZABLE}
+
+
+//查看数据库（表）大小
+select concat(round(sum(DATA_LENGTH/1024/1024),2),'M') from information_schema.TABLES where TABLE_SCHEMA='schema' and TABLE_NAME='table_name';
 
 //从一张表复制一列到另一张表中
 update table_A join table_B

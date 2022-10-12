@@ -2,8 +2,11 @@ package com.tyy;
 
 import com.tyy.jpa.Person;
 import com.tyy.jpa.TestEntity;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.*;
 
 /**
@@ -59,12 +62,13 @@ public class TestClass {
     public void test4(){
 
 
-        List<Double> doubles = List.of(1d, 2d, Double.NaN);
-        Double aDouble = doubles.stream().min(Double::compareTo).get();
-        System.out.println(aDouble);
-
-
         Random random = new Random();
+        for (int i = 0; i < 100; i++) {
+            double val = random.nextDouble(2);
+            DecimalFormat format = new DecimalFormat("0.0000");
+            System.out.println(val+" -> "+format.format(val));
+        }
+
 
 
     }
