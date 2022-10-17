@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+option java_multiple_files = false;
+option java_package = "com.tyy.grpc.proto";
+option java_outer_classname = "OpenFundFactorProto";
+
+package data;
+
+service OpenFundFactorGrpcService {
+  rpc SaveOpenFundFactor(OpenFundFactorSaveRequest) returns (OpenFundFactorSaveResponse);
+  rpc UpdateOpenFundFactorFormula(OpenFundFactorFormulaUpdateRequest) returns (OpenFundFactorFormulaUpdateResponse);
+  rpc GetOpenFundFactorVal(OpenFundFactorValGetRequest) returns (OpenFundFactorValResponse);
+}
+
+message OpenFundFactorSaveRequest {
+  string code = 1;
+  string name = 2;
+  string formula = 3;
+  string type = 4;
+  string factorCategoryCode = 5;
+  string description = 6;
+}
+
+message OpenFundFactorSaveResponse {
+  bool success = 1;
+}
+
+message OpenFundFactorFormulaUpdateRequest {
+  string code = 1;
+  string formula = 2;
+}
+
+message OpenFundFactorFormulaUpdateResponse {
+  bool success = 1;
+}
+
+message OpenFundFactorValGetRequest {
+  string code = 1;
+  string query_date = 2;
+  repeated string open_fund_codes = 3;
+}
+
+message OpenFundFactorValResponse {
+  repeated OpenFundFactorVal factorVals = 1;
+}
+
+message OpenFundFactorVal {
+  string open_fund_code = 1;
+  double val = 2;
+}

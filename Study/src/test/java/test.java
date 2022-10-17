@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.springframework.util.ObjectUtils;
 import pachong.DailyReturnEntity;
 import scala.util.parsing.combinator.testing.Str;
+import utils.CollectionUtil;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -173,6 +174,17 @@ public class test {
         System.out.println(SameHand.parse("SAME").isPresent());
         System.out.println(SameHand.parse("same").isPresent());
     }
+
+
+    @Test
+    public void test10() {
+        List<Integer> c1 = List.of(1, 2, 3);
+        List<Integer> c2 = List.of(2, 3, 4);
+
+        Collection<Integer> intersection = CollectionUtil.intersection(c1,c2);
+        System.out.println(intersection);
+    }
+
 
 
 
