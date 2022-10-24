@@ -61,14 +61,13 @@ public class TestClass {
     @Test
     public void test4(){
 
+        String s="1,2,3,4";
+        String s1="1";
 
-        Random random = new Random();
-        for (int i = 0; i < 100; i++) {
-            double val = random.nextDouble(2);
-            DecimalFormat format = new DecimalFormat("0.0000");
-            System.out.println(val+" -> "+format.format(val));
-        }
-
+        List<String> strings = Arrays.stream(s.split(",")).toList();
+        List<String> strings1 = Arrays.stream(s1.split(",")).toList();
+        System.out.println(strings);
+        System.out.println(strings1);
 
 
     }

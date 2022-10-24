@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @SpringBootTest
-class AuthApplicationTests {
+class JpaTests {
 
 
     @Autowired
