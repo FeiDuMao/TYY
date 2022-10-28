@@ -23,6 +23,23 @@ spring:
     url: jdbc:mysql://${mysql.host}:${mysql.port}/${mysql.database}?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
 
 
+thirdparty:
+  stock:
+    datasource:
+      hikari:
+        connection-test-query: SELECT 1 FROM DUAL
+        minimum-idle: 1
+        maximum-pool-size: ${maxPoolSize:5}
+        pool-name: bosPoolName
+        max-lifetime: 180000000
+        jdbcUrl: jdbc:mysql://${mysql.host}:${mysql.port}/huatai_stock?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+        username: ${mysql.username}
+        password: ${mysql.password}
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        connection-timeout: 60000
+        validation-timeout: 60000
+
+
 
 ---
 spring:
