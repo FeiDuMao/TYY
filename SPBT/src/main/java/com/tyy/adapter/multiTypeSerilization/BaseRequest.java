@@ -11,7 +11,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 //表示根据属性名字自动推断; 若子类属性名字和入参名字不同，可以搭配@JsonProperty("xxx"); 相同则直接在子类的构造器上加上@JsonCreator
 @JsonSubTypes({
         @JsonSubTypes.Type(RequestA.class),
-        @JsonSubTypes.Type(RequestB.class)
+        @JsonSubTypes.Type(RequestB.class),
+        @JsonSubTypes.Type(RequestC.class),
 })
 
 public abstract class BaseRequest {

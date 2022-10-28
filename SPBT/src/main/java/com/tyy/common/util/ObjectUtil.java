@@ -1,6 +1,6 @@
 package com.tyy.common.util;
 
-import com.tyy.common.exception.BadRequestParamExceptioin;
+import com.tyy.common.exception.BadRequestParamException;
 import lombok.SneakyThrows;
 
 import java.lang.reflect.Field;
@@ -19,7 +19,7 @@ public class ObjectUtil {
         for (Field field : clazz.getDeclaredFields()) {
             field.setAccessible(true);
             if (field.get(o) == null) {
-                throw new BadRequestParamExceptioin(clazz.getName(), field.getName());
+                throw new BadRequestParamException(clazz.getName(), field.getName());
             }
         }
 

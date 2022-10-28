@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 
 /**
@@ -61,14 +64,13 @@ public class TestClass {
     @Test
     public void test4(){
 
-        String s="1,2,3,4";
-        String s1="1";
 
-        List<String> strings = Arrays.stream(s.split(",")).toList();
-        List<String> strings1 = Arrays.stream(s1.split(",")).toList();
-        System.out.println(strings);
-        System.out.println(strings1);
+        for (int i = 0; i < 100; i++) {
+            System.out.println(System.currentTimeMillis());
+        }
 
+
+        System.out.println(LocalDateTime.ofInstant(Instant.ofEpochMilli(1666859260317L), ZoneId.systemDefault()));
 
     }
 

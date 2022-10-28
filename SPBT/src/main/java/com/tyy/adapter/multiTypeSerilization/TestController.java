@@ -1,5 +1,6 @@
 package com.tyy.adapter.multiTypeSerilization;
 
+import com.tyy.adapter.multiTypeSerilization.test.DashboardMapView;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,12 +17,10 @@ public class TestController {
 
 
     @RequestMapping("/serialization")
-    public void handle(@RequestBody BaseRequest baseRequest){
+    public void handle(@RequestBody ListBaseReq listBaseReq){
 
-        Universe universe = baseRequest.getUniverse();
-        String date = baseRequest.getDate();
-        System.out.println(date);
-
+        System.out.println(listBaseReq.moduleType);
+        System.out.println(listBaseReq.requests);
 
     }
 

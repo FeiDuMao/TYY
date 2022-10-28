@@ -1,6 +1,7 @@
 package com.tyy.adapter.multiTypeSerilization;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import lombok.Data;
 
 import java.util.List;
 
@@ -8,16 +9,16 @@ import java.util.List;
  * @Date 2022/9/19 10:43
  * @Created by taoyuanyuan
  */
-public class RequestA extends BaseRequest {
+public class RequestC extends BaseRequest {
 
     List<String> codes;
-    String c1;
+    Double d;
 
     @JsonCreator
-    public RequestA(String date, List<String> codes, String c1) {
+    public RequestC(String date, List<String> codes, Double d) {
         super(date);
         this.codes = codes;
-        this.c1 = c1;
+        this.d = d;
     }
 
     @Override
