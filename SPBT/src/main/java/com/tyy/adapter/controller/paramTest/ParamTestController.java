@@ -1,9 +1,13 @@
 package com.tyy.adapter.controller.paramTest;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * @Date 2022/9/19 16:09
@@ -12,6 +16,12 @@ import java.time.LocalDate;
 @RestController
 @RequestMapping("/param")
 public class ParamTestController {
+
+    public ParamTestController(@Qualifier("remote") FeignClientTest feignClientTest) {
+        this.feignClientTest = feignClientTest;
+    }
+
+    private final FeignClientTest feignClientTest;
 
 
     @GetMapping("/get/{name}")
@@ -29,9 +39,29 @@ public class ParamTestController {
     }
 
     @PostMapping("/resp")
-    public RespTest respTest(@RequestBody ReqTest reqTest){
+    public RespTest respTest(@RequestBody ReqTest reqTest) {
         System.out.println(reqTest);
-        return new RespTest("tyy","123");
+        return new RespTest("tyy", "123");
+    }
+
+
+    @PostMapping("/httpReqStudy")
+    public ResponseEntity<List<ReqTest>> httpReqStudy(@RequestBody ReqTest reqTest) {
+        System.out.println(reqTest);
+        return ResponseEntity.ok(List.of(reqTest, reqTest));
+    }
+
+    @GetMapping("/feign")
+    public ReqTest feign() {
+        ReqTest req = new ReqTest("tyy", "123");
+        ReqTest resp = feignClientTest.query(req);
+        return resp;
+    }
+
+    @GetMapping("/feign2")
+    public String feign2() {
+        String json = "{\"scenarios\":[\"1987 Black Monday - current correlations\"],\"primary_market_shocks\":[{\"fund_name\":\"GRE\",\"scenario\":\"1987 Black Monday - current correlations\",\"pnl_rate\":0.0},{\"fund_name\":\"PI\",\"scenario\":\"1987 Black Monday - current correlations\",\"pnl_rate\":0.0},{\"fund_name\":\"AI\",\"scenario\":\"1987 Black Monday - current correlations\",\"pnl_rate\":0.0}],\"adjust_aum\":[{\"fund_name\":\"Total Return Portfolio\",\"aum_dollar\":998392.01},{\"fund_name\":\"PI\",\"aum_dollar\":983.31}]}";
+        return feignClientTest.query2(json).toString();
     }
 
 }
