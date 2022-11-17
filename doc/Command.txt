@@ -25,6 +25,7 @@ ps -ef 查看所有进程
 
 
 
+
 windows运行环境搭建
 **须在管理员模式运行
 启动redis：redis-server（有时可能需要指定配置文件：进入redis根目录，redis-server redis.windos.conf ）

@@ -14,14 +14,12 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="auth" target="17" />
       <module name="AUTH" target="17" />
       <module name="grpc" target="17" />
       <module name="jwt" target="17" />
       <module name="SBPT" target="17" />
       <module name="SPBT" target="17" />
       <module name="SpringBootStudy" target="17" />
-      <module name="Study" target="16" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

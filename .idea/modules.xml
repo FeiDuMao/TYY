@@ -3,10 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SPBT/SBPT.iml" filepath="$PROJECT_DIR$/SPBT/SBPT.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Study/Study.iml" filepath="$PROJECT_DIR$/Study/Study.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/TYY.iml" filepath="$PROJECT_DIR$/.idea/TYY.iml" />
       <module fileurl="file://$PROJECT_DIR$/Test/Test.iml" filepath="$PROJECT_DIR$/Test/Test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SPBT/auth.iml" filepath="$PROJECT_DIR$/SPBT/auth.iml" />
     </modules>
   </component>
 </project>

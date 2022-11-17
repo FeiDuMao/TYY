@@ -3,6 +3,7 @@ package com.tyy;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,6 +24,7 @@ import java.util.stream.IntStream;
 @SpringBootTest
 public class MockData {
 
+    //localhost
     @Autowired
     JdbcTemplate jdbcTemplate;
 
@@ -31,11 +33,14 @@ public class MockData {
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 
+    @SneakyThrows
     @Test
     @Transactional
     public void mockData2() {
 
         Map<String, String> result = new HashMap<>();
+
+        jdbcTemplate.getDataSource().getConnection().setTransactionIsolation(1);
 
         String sql = "select * from stock_meta";
 

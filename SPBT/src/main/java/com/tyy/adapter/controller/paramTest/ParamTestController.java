@@ -1,7 +1,6 @@
 package com.tyy.adapter.controller.paramTest;
 
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -62,6 +61,11 @@ public class ParamTestController {
     public String feign2() {
         String json = "{\"scenarios\":[\"1987 Black Monday - current correlations\"],\"primary_market_shocks\":[{\"fund_name\":\"GRE\",\"scenario\":\"1987 Black Monday - current correlations\",\"pnl_rate\":0.0},{\"fund_name\":\"PI\",\"scenario\":\"1987 Black Monday - current correlations\",\"pnl_rate\":0.0},{\"fund_name\":\"AI\",\"scenario\":\"1987 Black Monday - current correlations\",\"pnl_rate\":0.0}],\"adjust_aum\":[{\"fund_name\":\"Total Return Portfolio\",\"aum_dollar\":998392.01},{\"fund_name\":\"PI\",\"aum_dollar\":983.31}]}";
         return feignClientTest.query2(json).toString();
+    }
+
+    @GetMapping("/test2")
+    public String testBoolean(@RequestParam Boolean hide) {
+        return hide.toString();
     }
 
 }

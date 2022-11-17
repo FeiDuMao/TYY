@@ -20,7 +20,7 @@ import java.util.List;
 class HttpClientTest {
 
 
-    private ObjectMapper mapper;
+    private final ObjectMapper mapper;
 
     {
         mapper = new ObjectMapper();
@@ -45,9 +45,9 @@ class HttpClientTest {
                 .header("Content-type", "application/json")
                 .build();
 
-        Object body = httpClient.send(req, HttpResponse.BodyHandlers.ofString()).body();
+        String body = httpClient.send(req, HttpResponse.BodyHandlers.ofString()).body();
 
-        ReqTest reqTest = mapper.readValue((String) body, javaType);
+        ReqTest reqTest = mapper.readValue(body, javaType);
         System.out.println(reqTest);
 
     }

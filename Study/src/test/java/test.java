@@ -3,34 +3,16 @@ import Entity.SameHand;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.util.ObjectUtils;
 import pachong.DailyReturnEntity;
-import scala.util.parsing.combinator.testing.Str;
 import utils.CollectionUtil;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.*;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.*;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.DoubleStream;
-import java.util.stream.Stream;
 
 @Slf4j
 public class test {
@@ -133,7 +115,7 @@ public class test {
     public void test6() {
 
 
-        Double d=Double.NaN;
+        Double d = Double.NaN;
         System.out.println(Double.NaN == d);
         System.out.println(d.isNaN());
 
@@ -148,21 +130,20 @@ public class test {
     }
 
 
-
     @SneakyThrows
     @Test
     public void test7() {
 
         HashMap<String, List<String>> map = new HashMap<>();
-        map.put("1",List.of("1"));
-        map.put("2",null);
-        map.put(null,List.of());
-        map.forEach((k,v)->{
+        map.put("1", List.of("1"));
+        map.put("2", null);
+        map.put(null, List.of());
+        map.forEach((k, v) -> {
             if (ObjectUtils.isEmpty(v))
-                System.out.println(k+"is empty");
+                System.out.println(k + "is empty");
 
             if (ObjectUtils.isEmpty(k))
-                System.out.println(k+"is empty");
+                System.out.println(k + "is empty");
         });
 
 
@@ -181,15 +162,22 @@ public class test {
         List<Integer> c1 = List.of(1, 2, 3);
         List<Integer> c2 = List.of(2, 3, 4);
 
-        Collection<Integer> intersection = CollectionUtil.intersection(c1,c2);
+        Collection<Integer> intersection = CollectionUtil.intersection(c1, c2);
         System.out.println(intersection);
     }
 
+    @Test
+    public void test11() {
+        List<Integer> c1 = Lists.newArrayList(1, 2, 3);
+        List<Integer> c2 = f1(c1);
+        System.out.println(c1);
+        System.out.println(c2);
+    }
 
-
-
-
-
+    private List<Integer> f1(List<Integer> c1) {
+        c1.add(1);
+        return c1;
+    }
 
 
 }
