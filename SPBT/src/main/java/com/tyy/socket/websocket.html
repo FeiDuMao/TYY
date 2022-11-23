@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button style="color: aqua" onclick="send()"> send</button>
+<button style="color: aqua" onclick="close()">close</button>
+</body>
+
+<script type="text/javascript">
+    const websocket = new WebSocket("ws://localhost:8080/websocket/tyy");
+    websocket.onopen = function () {
+        alert("open")
+    }
+    websocket.onerror = function () {
+        alert("error")
+    }
+    websocket.onmessage = function (msg) {
+        console.log(msg.data)
+    }
+
+    function send() {
+        websocket.send("req")
+    }
+
+    function close() {
+        websocket.close()
+    }
+
+</script>
+</html>
