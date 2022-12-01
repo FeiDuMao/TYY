@@ -1,5 +1,4 @@
 import Entity.Person;
-import Entity.SameHand;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.google.common.collect.Lists;
@@ -10,6 +9,11 @@ import org.springframework.util.ObjectUtils;
 import pachong.DailyReturnEntity;
 import utils.CollectionUtil;
 
+import java.lang.reflect.Field;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.*;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
@@ -20,7 +24,6 @@ public class test {
 
     //person的指向不能被改变，但是内部的熟悉可以改变
     private final Person person = new Person("tyy", 1);
-
 
     //0 1 1 2 3 5 8
     public int Fibonacci(int n) {
@@ -152,8 +155,23 @@ public class test {
     @SneakyThrows
     @Test
     public void test8() {
-        System.out.println(SameHand.parse("SAME").isPresent());
-        System.out.println(SameHand.parse("same").isPresent());
+
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now1 = LocalDateTime.of(2022, 1, 1, 12, 10, 1);
+        LocalDateTime now2 = LocalDateTime.of(2022, 1, 1, 12, 10, 2);
+
+        LocalDateTime time = LocalDateTime.ofInstant(Instant.ofEpochMilli(1), ZoneId.systemDefault());
+        System.out.println(time);
+
+        System.out.println(now);
+        System.out.println(now.toEpochSecond(ZoneOffset.UTC));
+        System.out.println(now.toInstant(ZoneOffset.UTC).toEpochMilli());
+        System.out.println(now1);
+        System.out.println(now1.toEpochSecond(ZoneOffset.UTC));
+        System.out.println(now1.toInstant(ZoneOffset.UTC).toEpochMilli());
+        System.out.println(now2);
+        System.out.println(now2.toEpochSecond(ZoneOffset.UTC));
+        System.out.println(now2.toInstant(ZoneOffset.UTC).toEpochMilli());
     }
 
 
@@ -177,6 +195,30 @@ public class test {
     private List<Integer> f1(List<Integer> c1) {
         c1.add(1);
         return c1;
+    }
+
+
+    @Test
+    public void test12() {
+
+        int[] arr1 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0, 0};
+        int index = 3;
+        System.arraycopy(arr1, index, arr1, index + 1, arr1.length - index - 1);
+        arr1[index] = 100;
+        System.out.println(Arrays.toString(arr1));
+
+
+    }
+    @SneakyThrows
+    @Test
+    public void test13() {
+
+        Person p=new Person("tyy",1);
+        Field name = Person.class.getDeclaredField("name");
+        name.setAccessible(true);
+        System.out.println(name.get(p));
+
+
     }
 
 

@@ -85,8 +85,14 @@ StringBuilder：在原对象上进行操作，线程不安全，性能最好
 容器分为：collection 和 map
 collection分为：list（有序可重复），set（无序不可重复）
 
-ArrayList：底层基于数组实现，适合随机查询多的场景；//插入和添加时可能会涉及到扩容和移位
-LinkedList：底层基于链表实现，适合增删改多的场景；此外，还实现了Deque接口，可以当队列来使用。
+ArrayList：底层基于数组实现，适合随机查询多的场景；//插入和添加时可能会涉及到扩容（1.5倍）和移位
+    因为底层基于数组，查询效率为O(1)
+    在增删改时，底层用过调用本地方法System.arraycopy进行元素的移动，实际效率比LinkedList更高
+LinkedList：底层基于链表实现，还实现了Deque接口，可以当队列来使用。
+    在进行增删改的时候，需要遍历找到node的位置，所以效率并不比ArrayList高,
+    优势在于，不需要连续的内存空间,可以更有效的利用内存
+
+他们都继承了AbstractList,其中，modCount记录了修改的次数，在使用他们的迭代器时，通过检查modCount是否改变，保证安全性
 
 HashMap：线程不安全，key和value都可以为空，数组默认长度为16；
 HashTable：与hashmap几乎相同，但是线程安全（get/put都是synchronized），不允许key和value为空。多线程下效率低。
