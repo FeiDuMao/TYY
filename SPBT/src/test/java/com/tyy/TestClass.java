@@ -3,17 +3,21 @@ package com.tyy;
 import com.tyy.adapter.controller.paramTest.ReqTest;
 import com.tyy.jpa.Person;
 import com.tyy.jpa.TestEntity;
+import com.tyy.util.JsonUtil;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.StopWatch;
 
-import java.lang.reflect.Field;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
+import java.util.regex.PatternSyntaxException;
 
 /**
  * @Date 2022/9/9 16:44
@@ -145,6 +149,9 @@ public class TestClass {
     @Test
     public void test13(){
 
+        System.out.println(Instant.now().getEpochSecond());
+        System.out.println(Instant.now().toEpochMilli());
+        System.out.println(LocalDate.ofInstant(Instant.ofEpochSecond(0), ZoneId.systemDefault()));
 
 
     }

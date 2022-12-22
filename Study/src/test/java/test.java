@@ -1,5 +1,11 @@
 import Entity.Person;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.json.JsonReadFeature;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.google.common.collect.Lists;
 import lombok.SneakyThrows;
@@ -9,7 +15,6 @@ import org.springframework.util.ObjectUtils;
 import pachong.DailyReturnEntity;
 import utils.CollectionUtil;
 
-import java.lang.reflect.Field;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -209,14 +214,24 @@ public class test {
 
 
     }
+
     @SneakyThrows
     @Test
     public void test13() {
 
-        Person p=new Person("tyy",1);
-        Field name = Person.class.getDeclaredField("name");
-        name.setAccessible(true);
-        System.out.println(name.get(p));
+        JsonFactory jsonFactory = JsonFactory.builder()
+                .configure(JsonReadFeature.ALLOW_NON_NUMERIC_NUMBERS, true)
+                .build();
+        JsonMapper jsonMapper = JsonMapper.builder(jsonFactory)
+                .disable(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES)
+                .enable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+                .addModule(new JavaTimeModule())
+                .addModule(new Jdk8Module())
+                .addModule(new SimpleModule())
+                .build();
+
+        Double result = jsonMapper.readValue("NaN", Double.class);
+        System.out.println(result);
 
 
     }

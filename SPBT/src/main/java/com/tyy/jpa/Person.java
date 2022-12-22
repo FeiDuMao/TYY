@@ -14,6 +14,8 @@ import lombok.*;
  * 否则会报错 ： 无法将类 com.tyy.jpa.Person中的构造器 Person应用到给定类型;
  * 原因：builder在获取参数列表的时候，获取不到所有的属性，实际参数列表和形式参数列表长度不同
  */
+@AllArgsConstructor
+@NoArgsConstructor
 public class Person {
 
     private String name;

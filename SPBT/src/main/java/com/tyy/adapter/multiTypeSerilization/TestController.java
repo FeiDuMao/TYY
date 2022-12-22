@@ -24,6 +24,12 @@ public class TestController {
 
     }
 
+    @RequestMapping("/serialization2")
+    public void handle2(){
+
+
+    }
+
 
 
 }
