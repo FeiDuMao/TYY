@@ -32,3 +32,5 @@ windows运行环境搭建
 启动mysql：net start mysql
 关闭mysql：net stop mysql
 
+
+tmp
